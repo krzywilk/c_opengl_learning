@@ -3,15 +3,19 @@
 #include <iostream>
 #include <glad/glad.h>
 #include "HelloWindow.h"
+#include "../ShapeDrawers/SingelTriangleShaderDrawer.h"
+#include <vector>
 
 
-
-void HelloWindow::renderLoop()
+void HelloWindow::renderLoop(vector<SingelTriangleShaderDrawer>& trainglesToDraw)
 {
     while (!glfwWindowShouldClose(window))
     {
         eventsProcessing();
         imageRendering();
+        for (SingelTriangleShaderDrawer elem: trainglesToDraw) {
+            elem.drawShape();
+        }
         glfwSwapBuffers(window);
         glfwPollEvents();
 

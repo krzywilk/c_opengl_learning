@@ -1,5 +1,8 @@
 #pragma once
 using namespace std;
+#include <vector>
+#include "../ShapeDrawers/SingelTriangleShaderDrawer.h"
+
 
 class rgb {
 public:
@@ -50,7 +53,7 @@ public:
         }
         
     };
-    void renderLoop();
+    void renderLoop(vector<SingelTriangleShaderDrawer>& trainglesToDraw);
     void setBackgroundColor(const float r, const float g, const float b);
 };
 

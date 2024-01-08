@@ -3,6 +3,8 @@
 #include <iostream>
 #include <glad/glad.h>
 #include "src/PredefinedWindows/HelloWindow.h"
+#include <vector>
+#include "src/ShapeDrawers/SingelTriangleShaderDrawer.h"
 
 void init_GLFW(int glfw_version_major = 4, int glfw_version_minor = 4) {
     glfwInit();
@@ -18,7 +20,27 @@ int main()
 {
     init_GLFW();
     HelloWindow basicWindowTest = HelloWindow("Separate impl", 800, 600, rgb(0.3f, 0.1f, 0.1f));
-    basicWindowTest.renderLoop();
+    SingelTriangleShaderDrawer singleTriangleDraw;
+    float vertices[] = {
+       -0.7f, -0.2f, 0.0f, // left  
+        0.0f, -0.2f, 0.0f, // right 
+        0.0f,  0.2f, 0.0f,  // top
+
+    };
+    SingelTriangleShaderDrawer singleTriangleDraw2;
+
+    float vertices2[] = {
+                -0.0f, -0.2f, 0.0f, // left  
+        0.7f, -0.2f, 0.0f, // right 
+        0.0f,  0.2f, 0.0f,  // top
+    };
+    singleTriangleDraw.transferData(vertices, sizeof(vertices));
+    singleTriangleDraw2.transferData(vertices2, sizeof(vertices2));
+    vector<SingelTriangleShaderDrawer> triangleDrawers;
+    triangleDrawers.push_back(singleTriangleDraw);
+    triangleDrawers.push_back(singleTriangleDraw2);
+
+    basicWindowTest.renderLoop(triangleDrawers);
     glfwTerminate();
 }
 

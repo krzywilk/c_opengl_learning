@@ -27,12 +27,15 @@
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\PredefinedWindows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelloWindow.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
+      <Filter>Pliki źródłowe\PredefinedWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\SingelTriangleShaderDrawer.h">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClInclude>
   </ItemGroup>

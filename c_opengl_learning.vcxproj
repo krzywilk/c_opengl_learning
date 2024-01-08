@@ -136,10 +136,11 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp" />
+    <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelloWindow.h" />
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h" />
+    <ClInclude Include="src\ShapeDrawers\SingelTriangleShaderDrawer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
