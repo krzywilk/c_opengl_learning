@@ -5,6 +5,7 @@
 #include "src/PredefinedWindows/HelloWindow.h"
 #include <vector>
 #include "src/ShapeDrawers/SingelTriangleShaderDrawer.h"
+#include "src/utils/simples.cpp"
 
 void init_GLFW(int glfw_version_major = 4, int glfw_version_minor = 4) {
     glfwInit();
@@ -26,7 +27,13 @@ int main()
         0.0f, -0.2f, 0.0f, // right 
         0.0f,  0.2f, 0.0f,  // top
 
+        -1.0f, 0.7f, 0.0f, // 2_left  
+        -0.7f, 0.7f, 0.0f, // 2_right 
+        0.0f,  0.7f, 0.0f,  // 2_top
+
     };
+    float color1[] = { 1.0f, 0.5f, 0.2f, 1.0f };
+
     SingelTriangleShaderDrawer singleTriangleDraw2;
 
     float vertices2[] = {
@@ -34,12 +41,15 @@ int main()
         0.7f, -0.2f, 0.0f, // right 
         0.0f,  0.2f, 0.0f,  // top
     };
+    float color2[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+
     singleTriangleDraw.transferData(vertices, sizeof(vertices));
     singleTriangleDraw2.transferData(vertices2, sizeof(vertices2));
+
     vector<SingelTriangleShaderDrawer> triangleDrawers;
     triangleDrawers.push_back(singleTriangleDraw);
     triangleDrawers.push_back(singleTriangleDraw2);
-
+    
     basicWindowTest.renderLoop(triangleDrawers);
     glfwTerminate();
 }

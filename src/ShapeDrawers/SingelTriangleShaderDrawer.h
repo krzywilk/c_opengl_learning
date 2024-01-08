@@ -20,6 +20,7 @@ private:
         "}\n\0";
     unsigned int shaderProgramId;
     unsigned int VBO, VAO;
+    unsigned int trianglesNumber;
 
     bool checkShaderCompilation(int shaderId) {
         // check for shader compile errors
@@ -38,6 +39,7 @@ private:
 
 public:
     SingelTriangleShaderDrawer() {
+        trianglesNumber = 0;
         unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
         glCompileShader(vertexShaderId);
@@ -63,7 +65,11 @@ public:
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 
     };
+    int getTrianglesNumber() const {
+        return trianglesNumber;
+    };
 
     void transferData(float vertices[], int vertices_length);
-    void drawShape();
+    void drawShape(int shapeIdx);
+
 };

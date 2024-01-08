@@ -16,6 +16,12 @@
     <Filter Include="Pliki źródłowe\PredefinedWindows">
       <UniqueIdentifier>{079516b1-59a2-415b-954d-92f89debdd66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\ShapeDrawers">
+      <UniqueIdentifier>{2da0ed27-99f1-44fc-a1aa-a7d59c62a35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\utils">
+      <UniqueIdentifier>{66449c68-ae64-42c8-80a7-8dc8d94c865f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -28,7 +34,10 @@
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClCompile>
     <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp">
-      <Filter>Pliki źródłowe\PredefinedWindows</Filter>
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\simples.cpp">
+      <Filter>Pliki źródłowe\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +45,7 @@
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClInclude>
     <ClInclude Include="src\ShapeDrawers\SingelTriangleShaderDrawer.h">
-      <Filter>Pliki źródłowe\PredefinedWindows</Filter>
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

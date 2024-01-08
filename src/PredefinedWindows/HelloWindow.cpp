@@ -14,7 +14,10 @@ void HelloWindow::renderLoop(vector<SingelTriangleShaderDrawer>& trainglesToDraw
         eventsProcessing();
         imageRendering();
         for (SingelTriangleShaderDrawer elem: trainglesToDraw) {
-            elem.drawShape();
+            for (int i = 0; i < elem.getTrianglesNumber(); i++) {
+                elem.drawShape(i);
+            }
+            
         }
         glfwSwapBuffers(window);
         glfwPollEvents();

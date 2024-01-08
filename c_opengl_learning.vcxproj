@@ -137,6 +137,7 @@
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp" />
     <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp" />
+    <ClCompile Include="src\utils\simples.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h" />

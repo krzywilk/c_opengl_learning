@@ -1,13 +1,12 @@
 #include "SingelTriangleShaderDrawer.h"
+#include "../utils/simples.cpp"
 
 void SingelTriangleShaderDrawer::transferData(float vertices[], int vertices_length)
 {
-
+    trianglesNumber = vertices_length / 9;
     glBindVertexArray(VAO);
-
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices_length, vertices, GL_STATIC_DRAW);
-    sizeof(*vertices);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -15,9 +14,9 @@ void SingelTriangleShaderDrawer::transferData(float vertices[], int vertices_len
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
-void SingelTriangleShaderDrawer::drawShape()
+void SingelTriangleShaderDrawer::drawShape(int shapeIdx)
 {
     glUseProgram(shaderProgramId);
     glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, shapeIdx, 3);
 }
