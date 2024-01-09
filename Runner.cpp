@@ -27,9 +27,9 @@ int main()
         0.0f, -0.2f, 0.0f, // right 
         0.0f,  0.2f, 0.0f,  // top
 
-        -1.0f, 0.7f, 0.0f, // 2_left  
-        -0.7f, 0.7f, 0.0f, // 2_right 
-        0.0f,  0.7f, 0.0f,  // 2_top
+        -0.0f, -0.2f, 0.0f, // left  
+        0.7f, -0.2f, 0.0f, // right 
+        0.0f,  0.2f, 0.0f,  // top
 
     };
     float color1[] = { 1.0f, 0.5f, 0.2f, 1.0f };
@@ -37,11 +37,12 @@ int main()
     SingelTriangleShaderDrawer singleTriangleDraw2;
 
     float vertices2[] = {
-                -0.0f, -0.2f, 0.0f, // left  
+        -0.0f, -0.2f, 0.0f, // left  
         0.7f, -0.2f, 0.0f, // right 
-        0.0f,  0.2f, 0.0f,  // top
+        0.0f,  -1.0f, 0.0f,  // top
     };
     float color2[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+
 
     singleTriangleDraw.transferData(vertices, sizeof(vertices));
     singleTriangleDraw2.transferData(vertices2, sizeof(vertices2));

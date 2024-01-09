@@ -69,7 +69,7 @@ public:
         return trianglesNumber;
     };
 
-    void transferData(float vertices[], int vertices_length);
+    void transferData(float vertices[], int vertices_sizeof);
     void drawShape(int shapeIdx);
 
 };
