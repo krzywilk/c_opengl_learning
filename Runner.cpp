@@ -4,8 +4,8 @@
 #include <glad/glad.h>
 #include "src/PredefinedWindows/HelloWindow.h"
 #include <vector>
-#include "src/ShapeDrawers/SingelTriangleShaderDrawer.h"
 #include "src/utils/simples.cpp"
+#include "src/ShapeDrawers/TrianglesShaderDrawer.h"
 
 void init_GLFW(int glfw_version_major = 4, int glfw_version_minor = 4) {
     glfwInit();
@@ -21,7 +21,7 @@ int main()
 {
     init_GLFW();
     HelloWindow basicWindowTest = HelloWindow("Separate impl", 800, 600, rgb(0.3f, 0.1f, 0.1f));
-    SingelTriangleShaderDrawer singleTriangleDraw;
+    TrianglesShaderDrawer singleTriangleDraw;
     float vertices[] = {
        -0.7f, -0.2f, 0.0f, // left  
         0.0f, -0.2f, 0.0f, // right 
@@ -34,7 +34,7 @@ int main()
     };
     float color1[] = { 1.0f, 0.5f, 0.2f, 1.0f };
 
-    SingelTriangleShaderDrawer singleTriangleDraw2;
+    TrianglesShaderDrawer singleTriangleDraw2;
 
     float vertices2[] = {
                 -0.0f, -0.2f, 0.0f, // left  
@@ -43,12 +43,12 @@ int main()
     };
     float color2[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 
-    singleTriangleDraw.transferData(vertices, sizeof(vertices));
-    singleTriangleDraw2.transferData(vertices2, sizeof(vertices2));
+    singleTriangleDraw.transferData(vertices, sizeof(vertices)/sizeof(float));
+    singleTriangleDraw2.transferData(vertices2, sizeof(vertices2) / sizeof(float));
 
-    vector<SingelTriangleShaderDrawer> triangleDrawers;
-    triangleDrawers.push_back(singleTriangleDraw);
-    triangleDrawers.push_back(singleTriangleDraw2);
+    vector<ShaderDrawer*> triangleDrawers;
+    triangleDrawers.push_back(&singleTriangleDraw);
+    triangleDrawers.push_back(&singleTriangleDraw2);
     
     basicWindowTest.renderLoop(triangleDrawers);
     glfwTerminate();

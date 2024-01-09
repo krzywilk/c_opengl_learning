@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-class SingelTriangleShaderDrawer 
+class ShaderDrawer 
 {
 private:
     const char* vertexShaderSource = "#version 330 core\n"
@@ -18,9 +18,7 @@ private:
         "{\n"
         "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
         "}\n\0";
-    unsigned int shaderProgramId;
-    unsigned int VBO, VAO;
-    unsigned int trianglesNumber;
+
 
     bool checkShaderCompilation(int shaderId) {
         // check for shader compile errors
@@ -37,9 +35,11 @@ private:
 
     }
 
+protected: 
+    unsigned int VBO, VAO;
+    unsigned int shaderProgramId;
 public:
-    SingelTriangleShaderDrawer() {
-        trianglesNumber = 0;
+    ShaderDrawer() {
         unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
         glCompileShader(vertexShaderId);
@@ -61,15 +61,13 @@ public:
 
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
-        std::cout << "Asd";
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 
     };
-    int getTrianglesNumber() const {
-        return trianglesNumber;
-    };
 
-    void transferData(float vertices[], int vertices_length);
-    void drawShape(int shapeIdx);
+    virtual void transferData(float vertices[], int vertices_length) = 0;
+    virtual void drawShape(int shapeIdx) = 0;
+    virtual void drawAllShapes() = 0;
+
 
 };

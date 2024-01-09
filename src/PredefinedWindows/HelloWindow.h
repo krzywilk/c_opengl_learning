@@ -1,8 +1,8 @@
 #pragma once
 using namespace std;
 #include <vector>
-#include "../ShapeDrawers/SingelTriangleShaderDrawer.h"
 #include "../utils/simples.cpp"
+#include "../ShapeDrawers/ShaderDrawer.h"
 
 
 class HelloWindow
@@ -41,7 +41,7 @@ public:
         }
         
     };
-    void renderLoop(vector<SingelTriangleShaderDrawer>& trainglesToDraw);
+    void renderLoop(const vector<ShaderDrawer*>& trainglesToDraw);
     void setBackgroundColor(const float r, const float g, const float b);
 };
 

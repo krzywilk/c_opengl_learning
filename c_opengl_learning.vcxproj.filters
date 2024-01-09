@@ -33,18 +33,24 @@
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp">
+    <ClCompile Include="src\ShapeDrawers\ShaderDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\simples.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\TrianglesShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\SingelTriangleShaderDrawer.h">
+    <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h">
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\TrianglesShaderDrawer.h">
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClInclude>
   </ItemGroup>
