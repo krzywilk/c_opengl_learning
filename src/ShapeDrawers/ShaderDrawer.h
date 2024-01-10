@@ -65,7 +65,7 @@ public:
 
     };
 
-    virtual void transferData(float vertices[], int vertices_length) = 0;
+    virtual void transferData(float vertices[], int vertices_sizeof) = 0;
     virtual void drawShape(int shapeIdx) = 0;
     virtual void drawAllShapes() = 0;
 

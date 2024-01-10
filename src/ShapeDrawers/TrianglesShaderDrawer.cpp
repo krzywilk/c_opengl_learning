@@ -1,12 +1,12 @@
 #include "TrianglesShaderDrawer.h"
 
 
-void TrianglesShaderDrawer::transferData(float vertices[], int vertices_length)
+void TrianglesShaderDrawer::transferData(float vertices[], int vertices_sizeof)
 {
-    trianglesNumber = vertices_length / 9;
+    trianglesNumber = vertices_sizeof / (9 * sizeof(float));
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices_length, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices_sizeof, vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -20,11 +20,11 @@ void TrianglesShaderDrawer::drawShape(int shapeIdx)
 {
     glUseProgram(shaderProgramId);
     glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-    glDrawArrays(GL_TRIANGLES, shapeIdx, 3);
+    glDrawArrays(GL_TRIANGLES, shapeIdx * 3, 3);
 }
 
 void TrianglesShaderDrawer::drawAllShapes() {
-    for (int i = 0; i < trianglesNumber; i++) {
-        drawShape(i);
-    }
+    glUseProgram(shaderProgramId);
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, trianglesNumber * 3);
 }

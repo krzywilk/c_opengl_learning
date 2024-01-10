@@ -42,6 +42,9 @@
     <ClCompile Include="src\ShapeDrawers\TrianglesShaderDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\IndicesShapeShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
@@ -51,6 +54,9 @@
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClInclude>
     <ClInclude Include="src\ShapeDrawers\TrianglesShaderDrawer.h">
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\IndicesShapeShaderDrawer.h">
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
     </ClInclude>
   </ItemGroup>
