@@ -1,5 +1,5 @@
 #pragma once
-class rgb {
+struct rgb {
 public:
     const float r;
     const float g;
