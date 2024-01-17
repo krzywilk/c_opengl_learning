@@ -1,15 +1,17 @@
 #pragma once
-#include "ShaderDrawer.h"
-class IndicesShapeShaderDrawer :
+#include "../ShaderDrawer.h"
+class StaticColorIndicesShapeShaderDrawer :
     public ShaderDrawer
 {
 private:
     unsigned int shapesNumber;
     unsigned int EBO;
+    rgb* shapeFillColor;
 
 public:
-    IndicesShapeShaderDrawer():
-        ShaderDrawer(),
+    StaticColorIndicesShapeShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor) :
+        ShaderDrawer(vertexShaderPath, fragmentShaderPath),
+        shapeFillColor(shapeFillColor),
         shapesNumber(0)
     {
         
@@ -23,6 +25,8 @@ public:
     virtual void setupIndices(unsigned int indices[], int indices_sizeof);
     virtual void drawShape(int shapeIdx);
     virtual void drawAllShapes();
-
+    void setColor(rgb* shapeColor) {
+        shapeFillColor = shapeColor;
+    }
 };
 

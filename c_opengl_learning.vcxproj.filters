@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Pliki nagłówkowe">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Pliki zasobów">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -22,6 +18,16 @@
     <Filter Include="Pliki źródłowe\utils">
       <UniqueIdentifier>{66449c68-ae64-42c8-80a7-8dc8d94c865f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki źródłowe\ShapeDrawers\StaticColor">
+      <UniqueIdentifier>{54330b3b-1500-46bd-b7a5-c28fb0c4a9a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\ShapeDrawers\DynamicColor">
+      <UniqueIdentifier>{8ee829e6-64ba-4588-87a6-c5063e85a021}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -33,19 +39,46 @@
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\SingelTriangleShaderDrawer.cpp">
-      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\simples.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\ShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClCompile>
+    <ClCompile Include="files.cpp">
+      <Filter>Pliki źródłowe\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\SingelTriangleShaderDrawer.h">
+    <ClInclude Include="stb_image.h">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h">
       <Filter>Pliki źródłowe\ShapeDrawers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.h">
+      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h">
+      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexColorIndicesShapeShaderDrawer.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.h">
+      <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

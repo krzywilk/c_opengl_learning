@@ -2,23 +2,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "../utils/simples.cpp"
+#include "../../files.cpp"
+#include <string>
+#include <string>
+
 
 class ShaderDrawer 
 {
 private:
-    const char* vertexShaderSource = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-        "}\0";
-    const char* fragmentShaderSource = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-        "}\n\0";
-
+    const char* vertexShaderSource;
+    const char* fragmentShaderSource;
 
     bool checkShaderCompilation(int shaderId) {
         // check for shader compile errors
@@ -38,8 +32,16 @@ private:
 protected: 
     unsigned int VBO, VAO;
     unsigned int shaderProgramId;
+    int vertexColorLocation;
 public:
-    ShaderDrawer() {
+    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath)
+        {
+        std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
+        vertexShaderSource = stringVertexShaderSource.c_str();
+
+        std::string stringFragmentShaderPath = loadShaderSourceCode(fragmentShaderPath);
+        fragmentShaderSource = stringFragmentShaderPath.c_str();
+
         unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
         glCompileShader(vertexShaderId);
@@ -55,6 +57,8 @@ public:
         glAttachShader(shaderProgramId, fragmentShaderId);
         glLinkProgram(shaderProgramId);
 
+        int vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
+
         glDeleteShader(vertexShaderId);
         glDeleteShader(fragmentShaderId);
 
@@ -68,6 +72,11 @@ public:
     virtual void transferData(float vertices[], int vertices_sizeof) = 0;
     virtual void drawShape(int shapeIdx) = 0;
     virtual void drawAllShapes() = 0;
+    ~ShaderDrawer() {
+        glDeleteVertexArrays(1, &VAO);
+        glDeleteBuffers(1, &VBO);
+        glDeleteProgram(shaderProgramId);
+    }
 
 
 };
