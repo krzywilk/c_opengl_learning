@@ -16,7 +16,7 @@ public:
     int getTrianglesNumber() const {
         return trianglesNumber;
     };
-    virtual void transferData(float vertices[], int vertices_sizeof);
+    virtual void transferData(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
     virtual void drawShape(int shapeIdx);
     virtual void drawAllShapes();
     void setColor(rgb* shapeColor) {

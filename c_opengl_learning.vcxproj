@@ -138,7 +138,6 @@
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp" />
     <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.cpp" />
-    <ClCompile Include="src\ShapeDrawers\ShaderDrawer.cpp" />
     <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.cpp" />
     <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.cpp" />
     <ClCompile Include="src\utils\simples.cpp" />

@@ -42,9 +42,6 @@
     <ClCompile Include="src\utils\simples.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\ShaderDrawer.cpp">
-      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
-    </ClCompile>
     <ClCompile Include="files.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
     </ClCompile>

@@ -65,18 +65,20 @@ int main()
         0, 1, 3,   // first triangle
         1, 2, 3    // second triangle
     };
+    rgb black(0.0f, 0.0f, 0.0f);
+
 
 
     StaticColorTrianglesShaderDrawer twoTrainglesDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", & color_topLeftRightTriangl);
     StaticColorTrianglesShaderDrawer singleTriangleDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", &color_bottomRightTriangle);
     StaticColorIndicesShapeShaderDrawer indicesRectangleDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", &color_rectangle_trainglesBased);
-    VertexColorIndicesShapeShaderDrawer indicesDynamicColorRectangleDrawer("src/ShadersSourceCode/dynamic_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/dynamic_color_shaders/fragment_shader.fs");
+    VertexColorIndicesShapeShaderDrawer indicesDynamicColorRectangleDrawer("src/ShadersSourceCode/dynamic_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/dynamic_color_shaders/shift_color_fragment_shader.fs", &black);
 
 
-    twoTrainglesDrawer.transferData(topLeftRightTriangle, sizeof(topLeftRightTriangle));
-    singleTriangleDrawer.transferData(bottomRightTriangle, sizeof(bottomRightTriangle));
-    indicesRectangleDrawer.transferData(rectangle_trainglesBased, sizeof(rectangle_trainglesBased), rectangle_trainglesBasedIndices, sizeof(rectangle_trainglesBasedIndices));
-    indicesDynamicColorRectangleDrawer.transferData(rectangle_dynamcColor_trainglesBased, sizeof(rectangle_dynamcColor_trainglesBased), rectangle_trainglesBasedIndices, sizeof(rectangle_trainglesBasedIndices));
+    twoTrainglesDrawer.transferData(topLeftRightTriangle, sizeof(topLeftRightTriangle), 3,3);
+    singleTriangleDrawer.transferData(bottomRightTriangle, sizeof(bottomRightTriangle), 3, 3);
+    indicesRectangleDrawer.transferData(rectangle_trainglesBased, sizeof(rectangle_trainglesBased), 3,3, rectangle_trainglesBasedIndices, sizeof(rectangle_trainglesBasedIndices));
+    indicesDynamicColorRectangleDrawer.transferDataWithColors(rectangle_dynamcColor_trainglesBased, sizeof(rectangle_dynamcColor_trainglesBased),3,3,6, rectangle_trainglesBasedIndices, sizeof(rectangle_trainglesBasedIndices));
 
     vector<ShaderDrawer*> triangleDrawers;
     triangleDrawers.push_back(&twoTrainglesDrawer);

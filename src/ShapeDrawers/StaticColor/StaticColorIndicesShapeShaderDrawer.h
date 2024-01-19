@@ -20,8 +20,8 @@ public:
     int getShapesNumber() const {
         return shapesNumber;
     };
-    virtual void transferData(float vertices[], int vertices_sizeof);
-    virtual void transferData(float vertices[], int vertices_sizeof, unsigned int indices[], int indices_sizeof);
+    virtual void transferData(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
+    virtual void transferData(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum, unsigned int indices[], int indices_sizeof);
     virtual void setupIndices(unsigned int indices[], int indices_sizeof);
     virtual void drawShape(int shapeIdx);
     virtual void drawAllShapes();
