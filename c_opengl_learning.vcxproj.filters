@@ -28,6 +28,30 @@
     <Filter Include="Pliki źródłowe\ShapeDrawers\DynamicColor">
       <UniqueIdentifier>{8ee829e6-64ba-4588-87a6-c5063e85a021}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\PredefinedWindows">
+      <UniqueIdentifier>{3445d93c-c480-44c9-94fc-cc52eb1b61bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\ShapeDrawers">
+      <UniqueIdentifier>{2fe8caa8-1427-4d01-938f-2ee96491a992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\ShapeDrawers\DynamicColor">
+      <UniqueIdentifier>{d31e4499-1934-4fbc-9964-374fac33539f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\ShapeDrawers\StaticColor">
+      <UniqueIdentifier>{ce859234-dd3c-44fe-837d-65ce059f73ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Textures">
+      <UniqueIdentifier>{f15fe933-261a-4501-bc36-0a0bcf167898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Textures\Loaders">
+      <UniqueIdentifier>{e97bfd96-78ac-434c-9b10-b30e24166db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Textures">
+      <UniqueIdentifier>{61bd13ca-a53a-4d42-a925-092a23207fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Textures\Loaders">
+      <UniqueIdentifier>{4878349e-6efb-4982-ae69-fb88788f241d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -54,28 +78,31 @@
     <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
     </ClCompile>
+    <ClCompile Include="TexturesDirLoader.cpp">
+      <Filter>Pliki źródłowe\Textures\Loaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
-      <Filter>Pliki źródłowe\PredefinedWindows</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
+    <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
+      <Filter>Pliki nagłówkowe\PredefinedWindows</Filter>
+    </ClInclude>
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h">
-      <Filter>Pliki źródłowe\ShapeDrawers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.h">
-      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h">
-      <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexColorIndicesShapeShaderDrawer.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\ShapeDrawers</Filter>
     </ClInclude>
     <ClInclude Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.h">
-      <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
+      <Filter>Pliki nagłówkowe\ShapeDrawers\DynamicColor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.h">
+      <Filter>Pliki nagłówkowe\ShapeDrawers\StaticColor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h">
+      <Filter>Pliki nagłówkowe\ShapeDrawers\StaticColor</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturesDirLoader.h">
+      <Filter>Pliki nagłówkowe\Textures\Loaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 #include "src/ShapeDrawers/StaticColor/StaticColorTrianglesShaderDrawer.h"
 #include "src/ShapeDrawers/StaticColor/StaticColorIndicesShapeShaderDrawer.h"
 #include "src/ShapeDrawers/DynamicColor/VertexColorIndicesShapeShaderDrawer.h"
+#include "TexturesDirLoader.h"
 
 namespace
 {
@@ -67,7 +68,8 @@ int main()
     };
     rgb black(0.0f, 0.0f, 0.0f);
 
-
+    TexturesDirLoader simpleTextureLoader("static_files/textures/");
+    simpleTextureLoader.loadTextures();
 
     StaticColorTrianglesShaderDrawer twoTrainglesDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", & color_topLeftRightTriangl);
     StaticColorTrianglesShaderDrawer singleTriangleDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", &color_bottomRightTriangle);

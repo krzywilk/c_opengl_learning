@@ -109,6 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +142,7 @@
     <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.cpp" />
     <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.cpp" />
     <ClCompile Include="src\utils\simples.cpp" />
+    <ClCompile Include="TexturesDirLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h" />
@@ -149,7 +151,7 @@
     <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.h" />
     <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="VertexColorIndicesShapeShaderDrawer.h" />
+    <ClInclude Include="TexturesDirLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
