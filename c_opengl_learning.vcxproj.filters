@@ -52,6 +52,12 @@
     <Filter Include="Pliki nagłówkowe\Textures\Loaders">
       <UniqueIdentifier>{4878349e-6efb-4982-ae69-fb88788f241d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\ShapeDrawers\Textures">
+      <UniqueIdentifier>{285f802a-b4cb-450d-8644-3deaf2a6438d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\ShapeDrawers\Textures">
+      <UniqueIdentifier>{4510d801-e550-47f4-a267-2812e4caebce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -78,7 +84,10 @@
     <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
     </ClCompile>
-    <ClCompile Include="TexturesDirLoader.cpp">
+    <ClCompile Include="src\ShapeDrawers\Textures\TextureIndicesShapeShaderDrawer.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp">
       <Filter>Pliki źródłowe\Textures\Loaders</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,7 +110,10 @@
     <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\StaticColor</Filter>
     </ClInclude>
-    <ClInclude Include="TexturesDirLoader.h">
+    <ClInclude Include="src\ShapeDrawers\Textures\TextureIndicesShapeShaderDrawer.h">
+      <Filter>Pliki nagłówkowe\ShapeDrawers\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h">
       <Filter>Pliki nagłówkowe\Textures\Loaders</Filter>
     </ClInclude>
   </ItemGroup>

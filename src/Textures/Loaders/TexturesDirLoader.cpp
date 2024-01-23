@@ -18,13 +18,14 @@ void TexturesDirLoader::loadTextures()
 		{
 			glGenTextures(1, &textures[currentIdx]);
 			glBindTexture(GL_TEXTURE_2D, textures[currentIdx]);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, texturesWrapS);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, texturesWrapT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, texturesMinFilter);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, texturesMagFilter);
 
 			const std::string name = path.filename().string();
 			names[currentIdx] = name;
+			name2id[name] = textures[currentIdx];
 			std::string ext = path.extension().string();
 			int textureFormat = GL_RGB;
 			//std::transform(name.begin(), name.end(), name.begin(),

@@ -12,7 +12,6 @@ public:
         StaticColorIndicesShapeShaderDrawer(vertexShaderPath, fragmentShaderPath, shapeFillColor),
         shapesNumber(0)
     {
-
         glGenBuffers(1, &EBO);
     };
     int getShapesNumber() const {
