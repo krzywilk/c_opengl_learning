@@ -3,8 +3,10 @@
 class VertexColorIndicesShapeShaderDrawer :
     public StaticColorIndicesShapeShaderDrawer
 {
-private:
+protected:
     unsigned int shapesNumber;
+private:
+    
     unsigned int EBO;
 
 public:
@@ -18,28 +20,6 @@ public:
         return shapesNumber;
     };
 
-    void transferDataWithColors(float vertices[], int vertices_sizeof, int single_verticle_size, int singleVerticleColorSize, int singleVerticleDataElemsNum,unsigned int indices[], int indices_sizeof);
-
-
-    virtual void transferData(float vertices[], int vertices_sizeof, int single_verticle_size, int singleVerticleDataElemsNum)
-    {
-        StaticColorIndicesShapeShaderDrawer::transferData(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum);
-    };
-    virtual void transferData(float vertices[], int vertices_sizeof, int single_verticle_size, int singleVerticleDataElemsNum, unsigned int indices[], int indices_sizeof)
-    {
-        StaticColorIndicesShapeShaderDrawer::transferData(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum, indices, indices_sizeof);
-    };
-    virtual void setupIndices(unsigned int indices[], int indices_sizeof)
-    {
-        StaticColorIndicesShapeShaderDrawer::setupIndices(indices, indices_sizeof);
-    };
-    virtual void drawShape(int shapeIdx)
-    {
-        StaticColorIndicesShapeShaderDrawer::drawShape(shapeIdx);
-    };
-    virtual void drawAllShapes() 
-    {
-        StaticColorIndicesShapeShaderDrawer::drawAllShapes();
-    };
+    void transferDataWithColors(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleColorSize, int singleVerticleDataElemsNum,unsigned int* indices, int indices_sizeof);
 };
 

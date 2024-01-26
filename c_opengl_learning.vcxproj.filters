@@ -90,6 +90,9 @@
     <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp">
       <Filter>Pliki źródłowe\Textures\Loaders</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\Textures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -115,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h">
       <Filter>Pliki nagłówkowe\Textures\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableTextureShapeShader.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.h">
+      <Filter>Pliki nagłówkowe\ShapeDrawers\Textures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

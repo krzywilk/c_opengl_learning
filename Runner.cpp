@@ -11,6 +11,7 @@
 #include "src/Textures/Loaders/TexturesDirLoader.h"
 #include "src/ShapeDrawers/Textures/TextureIndicesShapeShaderDrawer.h"
 #include<array> 
+#include "src/ShapeDrawers/Textures/TransformableTextureShapeShader.h"
 
 
 namespace
@@ -66,10 +67,10 @@ int main()
     };
 
     float rectangle_textures_dynamcColor_trainglesBased[] = {
- -0.5f,  -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, 1.0f, 1.0f,// top right
- -0.5f, -0.9f, 0.0f, 0.0f, 1.0f, 0.0f,  1.0f, 0.0f,// bottom right
- -0.9f, -0.9f, 0.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
--0.9f,  -0.5f, 0.0f ,  1.0f, 0.0f, 1.0f,  0.0f, 1.0f // top left 
+         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
     };
 
     unsigned int rectangle_trainglesBasedIndices[] = {  // note that we start from 0!
@@ -93,7 +94,11 @@ int main()
     StaticColorTrianglesShaderDrawer singleTriangleDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", &color_bottomRightTriangle);
     StaticColorIndicesShapeShaderDrawer indicesRectangleDrawer("src/ShadersSourceCode/constant_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", &color_rectangle_trainglesBased);
     VertexColorIndicesShapeShaderDrawer indicesDynamicColorRectangleDrawer("src/ShadersSourceCode/dynamic_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/dynamic_color_shaders/shift_color_fragment_shader.fs", &black);
-    TextureIndicesShapeShaderDrawer texturerRectangleDrawer("src/ShadersSourceCode/dynamic_color_shaders/vertex_shader.vs", "src/ShadersSourceCode/dynamic_color_shaders/shift_color_textures_fragment_shader.fs", &black, textureIds, current_idx);
+    
+    glm::mat4 trans = glm::mat4(1.0f);
+    trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+    trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+    TransformableTextureShapeShader texturerRectangleDrawer("src/ShadersSourceCode/dynamic_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/dynamic_color_shaders/shift_color_textures_fragment_shader.fs", &black, textureIds, current_idx, &trans);
 
 
     twoTrainglesDrawer.transferData(topLeftRightTriangle, sizeof(topLeftRightTriangle), 3,3);

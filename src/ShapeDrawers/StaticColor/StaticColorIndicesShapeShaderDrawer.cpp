@@ -2,7 +2,7 @@
 #include "StaticColorIndicesShapeShaderDrawer.h"
 
 
-void StaticColorIndicesShapeShaderDrawer::transferData(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
+void StaticColorIndicesShapeShaderDrawer::transferData(float *vertices, int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
 {
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -11,13 +11,13 @@ void StaticColorIndicesShapeShaderDrawer::transferData(float vertices[], int ver
     glEnableVertexAttribArray(0);
 }
 
-void StaticColorIndicesShapeShaderDrawer::transferData(float vertices[], int vertices_sizeof, int single_verticle_size, int singleVerticleDataElemsNum, unsigned int indices[], int indices_sizeof)
+void StaticColorIndicesShapeShaderDrawer::transferData(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof)
 {
     setupIndices(indices, indices_sizeof);
     transferData(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum );
 }
 
-void StaticColorIndicesShapeShaderDrawer::setupIndices(unsigned int indices[], int indices_sizeof)
+void StaticColorIndicesShapeShaderDrawer::setupIndices(unsigned int* indices, int indices_sizeof)
 {
     glBindVertexArray(VAO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
