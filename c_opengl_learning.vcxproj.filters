@@ -75,16 +75,16 @@
     <ClCompile Include="files.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.cpp">
+    <ClCompile Include="src\ShapeDrawers\StaticColor\ColoredShapesDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.cpp">
+    <ClCompile Include="src\ShapeDrawers\StaticColor\ColoredTrianglesDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\StaticColor</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.cpp">
+    <ClCompile Include="src\ShapeDrawers\DynamicColor\VertexColoredShapesDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\DynamicColor</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShapeDrawers\Textures\TextureIndicesShapeShaderDrawer.cpp">
+    <ClCompile Include="src\ShapeDrawers\Textures\ColoredTexturedShapeDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\Textures</Filter>
     </ClCompile>
     <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp">
@@ -104,16 +104,16 @@
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\DynamicColor\VertexColorIndicesShapeShaderDrawer.h">
+    <ClInclude Include="src\ShapeDrawers\DynamicColor\VertexColoredShapesDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\DynamicColor</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorIndicesShapeShaderDrawer.h">
+    <ClInclude Include="src\ShapeDrawers\StaticColor\ColoredShapesDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\StaticColor</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\StaticColor\StaticColorTrianglesShaderDrawer.h">
+    <ClInclude Include="src\ShapeDrawers\StaticColor\ColoredTrianglesDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\StaticColor</Filter>
     </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\Textures\TextureIndicesShapeShaderDrawer.h">
+    <ClInclude Include="src\ShapeDrawers\Textures\ColoredTexturedShapeDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\Textures</Filter>
     </ClInclude>
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h">

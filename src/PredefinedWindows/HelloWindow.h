@@ -43,6 +43,12 @@ public:
     };
     void renderLoop(const vector<ShaderDrawer*>& trainglesToDraw);
     void setBackgroundColor(const float r, const float g, const float b);
+    unsigned int getWidth() {
+        return width;
+    };
+    unsigned int getHeight() {
+        return height;
+    };
 };
 
 

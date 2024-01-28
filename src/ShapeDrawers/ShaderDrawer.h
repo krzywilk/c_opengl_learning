@@ -33,8 +33,11 @@ protected:
     unsigned int VBO, VAO;
     unsigned int shaderProgramId;
     int vertexColorLocation;
+    unsigned int trianglesNumber;
+
 public:
-    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath)
+    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath):
+        trianglesNumber(0)
         {
         std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
         vertexShaderSource = stringVertexShaderSource.c_str();
@@ -68,10 +71,13 @@ public:
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 
     };
-
-    virtual void transferData(float* vertices, int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum) = 0;
+    void setTrianglesNumber(unsigned int trianglesNumber) {
+        this->trianglesNumber = trianglesNumber;
+    }
+    virtual void transferTriangles(float* vertices, int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum) = 0;
     virtual void drawShape(int shapeIdx) = 0;
     virtual void drawAllShapes() = 0;
+    virtual void drawAllTriangles() = 0;
     ~ShaderDrawer() {
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);

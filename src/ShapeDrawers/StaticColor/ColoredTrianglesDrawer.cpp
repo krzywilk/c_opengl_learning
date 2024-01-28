@@ -1,8 +1,8 @@
 #pragma once
-#include "StaticColorTrianglesShaderDrawer.h"
+#include "ColoredTrianglesDrawer.h"
 
 
-void StaticColorTrianglesShaderDrawer::transferData(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
+void ColoredTrianglesDrawer::transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
 {
     trianglesNumber = vertices_sizeof / (singleVerticleElemsNum *3 * sizeof(float));
     glBindVertexArray(VAO);
@@ -13,7 +13,7 @@ void StaticColorTrianglesShaderDrawer::transferData(float vertices[], int vertic
 }
 
 
-void StaticColorTrianglesShaderDrawer::drawShape(int shapeIdx)
+void ColoredTrianglesDrawer::drawShape(int shapeIdx)
 {
     glUseProgram(shaderProgramId);
     glUniform4f(vertexColorLocation, shapeFillColor->r, shapeFillColor->g, shapeFillColor->b, 1.0f);
@@ -21,7 +21,7 @@ void StaticColorTrianglesShaderDrawer::drawShape(int shapeIdx)
     glDrawArrays(GL_TRIANGLES, shapeIdx * 3, 3);
 }
 
-void StaticColorTrianglesShaderDrawer::drawAllShapes() {
+void ColoredTrianglesDrawer::drawAllShapes() {
     glUseProgram(shaderProgramId);
     glUniform4f(vertexColorLocation, shapeFillColor->r, shapeFillColor->g, shapeFillColor->b, 1.0f);
     glBindVertexArray(VAO);
