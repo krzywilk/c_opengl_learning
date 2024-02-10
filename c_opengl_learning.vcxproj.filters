@@ -58,6 +58,12 @@
     <Filter Include="Pliki źródłowe\ShapeDrawers\Textures">
       <UniqueIdentifier>{4510d801-e550-47f4-a267-2812e4caebce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Cameras">
+      <UniqueIdentifier>{9980216f-afa0-496c-a630-8b2d2d33d94c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Cameras">
+      <UniqueIdentifier>{2e0b1c41-8274-4cb4-b35e-41e9816b9a27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -93,6 +99,9 @@
     <ClCompile Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\Textures</Filter>
     </ClCompile>
+    <ClCompile Include="CameraViewProcessing.cpp">
+      <Filter>Pliki źródłowe\Cameras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -119,11 +128,11 @@
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h">
       <Filter>Pliki nagłówkowe\Textures\Loaders</Filter>
     </ClInclude>
-    <ClInclude Include="TransformableTextureShapeShader.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraViewProcessing.h">
+      <Filter>Pliki nagłówkowe\Cameras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,3 +19,13 @@ void ColoredTexturedShapeDrawer::transferVerticesIndicesTextures(float* vertices
 	glBindVertexArray(0);
 
 }
+
+void ColoredTexturedShapeDrawer::transferTrianglesWithTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum)
+{
+	ColoredTrianglesDrawer::transferTriangles(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum);
+	glVertexAttribPointer(2, singleVerticleTextureSize, GL_FLOAT, GL_FALSE, singleVerticleDataElemsNum * sizeof(float), (void*)(single_verticle_size * sizeof(float)));
+	glEnableVertexAttribArray(2);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	
+}

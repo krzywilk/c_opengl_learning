@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraViewProcessing.cpp" />
     <ClCompile Include="files.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Runner.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="src\utils\simples.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraViewProcessing.h" />
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h" />
     <ClInclude Include="src\ShapeDrawers\DynamicColor\VertexColoredShapesDrawer.h" />
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h" />
@@ -156,7 +158,6 @@
     <ClInclude Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.h" />
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="TransformableTextureShapeShader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

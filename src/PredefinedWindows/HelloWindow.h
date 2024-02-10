@@ -3,7 +3,8 @@ using namespace std;
 #include <vector>
 #include "../utils/simples.cpp"
 #include "../ShapeDrawers/ShaderDrawer.h"
-
+#include "../../CameraViewProcessing.h"
+#include "../ShapeDrawers/Textures/TransformableTextureShapeShader.h"
 
 class HelloWindow
 {
@@ -11,20 +12,39 @@ private:
     unsigned int width;
     unsigned int height;
 
+    float deltaTime = 0.0f;	// time between current frame and last frame
+    float lastFrame = 0.0f;
+
     const char* windowName;
     rgb* backgroundColor;
     GLFWwindow* window;
 
+    bool firstMouse;
+    float lastX;
+    float lastY;
+    CameraViewProcessor* camera;
+
+
     void eventsProcessing();
     void imageRendering();
 
+    void registerCallbacks() {
+        glfwSetWindowUserPointer(window, this);
+
+        glfwSetCursorPosCallback(window, mouse_callback);
+        glfwSetScrollCallback(window, scroll_callback);
+    };
 
 public:
-    HelloWindow(const char* windowName = "basic_window", unsigned int width = 800, unsigned int height = 600, rgb backgroundColor = rgb(0,0,0)) :
+    HelloWindow(CameraViewProcessor* camera, const char* windowName = "basic_window", unsigned int width = 800, unsigned int height = 600, rgb backgroundColor = rgb(0,0,0)) :
         windowName(windowName),
+        camera(camera),
         width(width),
         height(height),
-        backgroundColor(&backgroundColor)
+        backgroundColor(&backgroundColor),
+        firstMouse(true),
+        lastX(400),
+        lastY(300)
     {
         GLFWwindow* window = glfwCreateWindow(width, height, windowName, NULL, NULL);
         if (window == NULL)
@@ -39,16 +59,45 @@ public:
         {
             std::cout << "Failed to initialize GLAD" << std::endl;
         }
-        
+        registerCallbacks();
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     };
-    void renderLoop(const vector<ShaderDrawer*>& trainglesToDraw);
+    void drawOnlyRenderLoop(const vector<ShaderDrawer*>& trainglesToDraw);
+    void cameraRenderLoop(const vector<TransformableTextureShapeShader*>& trainglesToDraw);
     void setBackgroundColor(const float r, const float g, const float b);
+    void static scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void static mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
     unsigned int getWidth() {
         return width;
     };
     unsigned int getHeight() {
         return height;
     };
+    void setFirstMouse(bool firstMouse) {
+        this->firstMouse = firstMouse;
+    }
+    void setLastX(float lastX)
+    {
+        this->lastX = lastX;
+    }
+    void setLastY(float lastY)
+    {
+        this->lastY = lastY;
+    }
+    bool getFirstMouse() {
+        return firstMouse;
+    }
+    float getLastX()
+    {
+        return lastX;
+    }
+    float getLastY()
+    {
+        return lastY;
+    }
+    CameraViewProcessor* getCamera() {
+        return camera;
+    }
 };
 
 

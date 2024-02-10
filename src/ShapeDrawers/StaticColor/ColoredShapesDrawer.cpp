@@ -6,7 +6,7 @@ void ColoredShapesDrawer::transferVerticesAndIndices(float* vertices, int vertic
 {
     setupIndices(indices, indices_sizeof);
     transferTriangles(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum );
-    trianglesNumber = indices_sizeof / (3 * sizeof(float));
+    setTrianglesNumber(indices_sizeof / (3 * sizeof(float)));
 }
 
 void ColoredShapesDrawer::setupIndices(unsigned int* indices, int indices_sizeof)

@@ -4,7 +4,7 @@
 
 void ColoredTrianglesDrawer::transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
 {
-    trianglesNumber = vertices_sizeof / (singleVerticleElemsNum *3 * sizeof(float));
+    setTrianglesNumber(vertices_sizeof / (singleVerticleElemsNum * 3 * sizeof(float)));
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices_sizeof, vertices, GL_STATIC_DRAW);

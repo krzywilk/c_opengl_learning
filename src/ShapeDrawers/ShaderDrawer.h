@@ -71,6 +71,50 @@ public:
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
 
     };
+
+    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, int &VAO, int &VBO) :
+        
+        trianglesNumber(0)
+    {
+        std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
+        vertexShaderSource = stringVertexShaderSource.c_str();
+
+        std::string stringFragmentShaderPath = loadShaderSourceCode(fragmentShaderPath);
+        fragmentShaderSource = stringFragmentShaderPath.c_str();
+
+        unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
+        glCompileShader(vertexShaderId);
+        checkShaderCompilation(vertexShaderId);
+
+        unsigned int fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+        glShaderSource(fragmentShaderId, 1, &fragmentShaderSource, NULL);
+        glCompileShader(fragmentShaderId);
+        checkShaderCompilation(fragmentShaderId);
+
+        shaderProgramId = glCreateProgram();
+        glAttachShader(shaderProgramId, vertexShaderId);
+        glAttachShader(shaderProgramId, fragmentShaderId);
+        glLinkProgram(shaderProgramId);
+
+        int vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
+
+        glDeleteShader(vertexShaderId);
+        glDeleteShader(fragmentShaderId);
+        // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+
+    };
+
+    int getVBO() {
+        return VBO;
+    }
+
+
+    int getVAO() {
+        return VAO;
+    }
+
+
     void setTrianglesNumber(unsigned int trianglesNumber) {
         this->trianglesNumber = trianglesNumber;
     }

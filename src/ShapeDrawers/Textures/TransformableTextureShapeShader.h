@@ -53,16 +53,16 @@ public:
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		ColoredTexturedShapeDrawer::drawAllTrangles();
+		ColoredTexturedShapeDrawer::drawAllShapes();
 	};
 
-	virtual void drawAllTrangles()
+	virtual void drawAllTriangles()
 	{
 		glUseProgram(shaderProgramId);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		ColoredTexturedShapeDrawer::drawAllTrangles();
+		ColoredTexturedShapeDrawer::drawAllTriangles();
 	};
 
 	void transferTrianglesWithTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum);

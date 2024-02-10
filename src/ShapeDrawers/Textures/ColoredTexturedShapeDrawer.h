@@ -27,6 +27,8 @@ public:
 
 	void transferVerticesIndicesTextureColors(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleColorSize, int singleVerticleTextureSize, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof);
 	void transferVerticesIndicesTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof);
+    void transferTrianglesWithTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum);
+
     virtual void drawShape(int shapeIdx)
     {
         for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
@@ -45,7 +47,7 @@ public:
         VertexColoredShapesDrawer::drawAllShapes();
     };
 
-    virtual void drawAllTrangles()
+    virtual void drawAllTriangles()
     {
         for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
             glActiveTexture(GL_TEXTURE0 + textureIdx);
