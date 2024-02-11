@@ -6,6 +6,8 @@
 #include "../../files.cpp"
 #include <string>
 #include <string>
+#include <map>
+#include <glm/fwd.hpp>
 
 
 class ShaderDrawer 
@@ -34,47 +36,14 @@ protected:
     unsigned int shaderProgramId;
     int vertexColorLocation;
     unsigned int trianglesNumber;
+    std::map<std::string, int> mat4ShaderUniformLocations;
+    //std::map<std::string, glm::mat4> mat4ShaderUniformValues;
 
 public:
-    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath):
-        trianglesNumber(0)
-        {
-        std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
-        vertexShaderSource = stringVertexShaderSource.c_str();
-
-        std::string stringFragmentShaderPath = loadShaderSourceCode(fragmentShaderPath);
-        fragmentShaderSource = stringFragmentShaderPath.c_str();
-
-        unsigned int vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
-        glCompileShader(vertexShaderId);
-        checkShaderCompilation(vertexShaderId);
-
-        unsigned int fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShaderId, 1, &fragmentShaderSource, NULL);
-        glCompileShader(fragmentShaderId);
-        checkShaderCompilation(fragmentShaderId);
-
-        shaderProgramId = glCreateProgram();
-        glAttachShader(shaderProgramId, vertexShaderId);
-        glAttachShader(shaderProgramId, fragmentShaderId);
-        glLinkProgram(shaderProgramId);
-
-        int vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
-
-        glDeleteShader(vertexShaderId);
-        glDeleteShader(fragmentShaderId);
-
-
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
-        // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-
-    };
-
-    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, int &VAO, int &VBO) :
-        
-        trianglesNumber(0)
+    ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int &VAO, unsigned int &VBO) :
+        trianglesNumber(0),
+        VBO(VBO),
+        VAO(VAO)
     {
         std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
         vertexShaderSource = stringVertexShaderSource.c_str();
@@ -97,20 +66,31 @@ public:
         glAttachShader(shaderProgramId, fragmentShaderId);
         glLinkProgram(shaderProgramId);
 
-        int vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
-
         glDeleteShader(vertexShaderId);
         glDeleteShader(fragmentShaderId);
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+        std::map<std::string, int> mat4ShaderLocations;
+        vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
+
 
     };
 
-    int getVBO() {
+    void setMat4ShaderUniform(const char* shaderUniformeName) {
+        mat4ShaderUniformLocations.insert({ shaderUniformeName, glGetUniformLocation(shaderProgramId, shaderUniformeName) });
+    };
+
+    void setMat4ShaderUniformValue(const char* shaderUniformeName, glm::mat4* value) {
+       // mat4ShaderUniformValues.insert({shaderUniformeName, value});
+    };
+
+
+
+    unsigned int getVBO() {
         return VBO;
     }
 
 
-    int getVAO() {
+    unsigned int getVAO() {
         return VAO;
     }
 

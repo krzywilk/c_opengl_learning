@@ -4,12 +4,12 @@ class ColoredTrianglesDrawer :
     public ShaderDrawer
 {
 protected:
-    rgb* shapeFillColor;
+    rgb shapeFillColor;
 
 public:
-    ColoredTrianglesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor):
-        ShaderDrawer(vertexShaderPath, fragmentShaderPath),
-        shapeFillColor(shapeFillColor)
+    ColoredTrianglesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, rgb* shapeFillColor):
+        ShaderDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO),
+        shapeFillColor(*shapeFillColor)
     {};
     int getTrianglesNumber() const {
         return trianglesNumber;
@@ -20,8 +20,8 @@ public:
         ColoredTrianglesDrawer::drawAllShapes();
     }
     virtual void drawAllShapes();
-    void setColor(rgb* shapeColor) {
-        shapeFillColor = shapeColor;
+    void setColor(rgb shapeColor) {
+        rgb shapeFillColor(shapeColor.r, shapeColor.g, shapeColor.b);
     }
 };
 

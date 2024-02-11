@@ -10,8 +10,8 @@ private:
 protected:
     void setupIndices(unsigned int* indices, int indices_sizeof);
 public:
-    ColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor) :
-        ColoredTrianglesDrawer(vertexShaderPath, fragmentShaderPath, shapeFillColor)
+    ColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, rgb* shapeFillColor) :
+        ColoredTrianglesDrawer(vertexShaderPath, fragmentShaderPath,VAO,VBO, shapeFillColor)
     {
         
         glGenBuffers(1, &EBO);

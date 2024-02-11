@@ -17,9 +17,9 @@ private:
 
 public:
 	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor, 
-		unsigned int* textureIds, unsigned int texutresNumber, glm::mat4 * modelTransformation,
+		unsigned int* textureIds, unsigned int texutresNumber, unsigned int& VAO, unsigned int& VBO, unsigned int&  EBO,  glm::mat4 * modelTransformation,
 		glm::mat4* viewTransformation, glm::mat4* projectionTransformation) :
-		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, shapeFillColor, textureIds, texutresNumber),
+		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO,  shapeFillColor, textureIds, texutresNumber),
 		modelTransformation(*modelTransformation),
 		viewTransformation(*viewTransformation),
 		projectionTransformation(*projectionTransformation)
@@ -28,8 +28,8 @@ public:
 		viewLoc = glGetUniformLocation(shaderProgramId, "view");
 		projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
 	};
-	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor, unsigned int* textureIds, unsigned int texutresNumber) :
-		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, shapeFillColor, textureIds, texutresNumber)
+	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, rgb* shapeFillColor, unsigned int* textureIds, unsigned int texutresNumber) :
+		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath,  VAO, VBO, EBO,shapeFillColor, textureIds, texutresNumber)
 	{
 		modelTransformation = glm::mat4(1.0f);
 		viewTransformation = glm::mat4(1.0f);

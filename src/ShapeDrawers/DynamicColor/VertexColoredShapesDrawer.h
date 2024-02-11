@@ -8,10 +8,11 @@ private:
     unsigned int EBO;
 
 public:
-    VertexColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, rgb* shapeFillColor) :
-        ColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, shapeFillColor)
+    VertexColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO,unsigned int & EBO,  rgb* shapeFillColor) :
+        ColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, shapeFillColor),
+        EBO(EBO)
     {
-        glGenBuffers(1, &EBO);
+        
     };
     void transferVerticesIndicesColors(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleColorSize, int singleVerticleDataElemsNum,unsigned int* indices, int indices_sizeof);
 };

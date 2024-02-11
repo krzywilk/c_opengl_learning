@@ -15,9 +15,9 @@ private:
     float deltaTime = 0.0f;	// time between current frame and last frame
     float lastFrame = 0.0f;
 
-    const char* windowName;
-    rgb* backgroundColor;
-    GLFWwindow* window;
+    const char windowName;
+    rgb backgroundColor; 
+    GLFWwindow* window; // TODO: to refactor? https://stackoverflow.com/questions/26246940/when-should-i-provide-a-destructor-for-my-class
 
     bool firstMouse;
     float lastX;
@@ -37,11 +37,11 @@ private:
 
 public:
     HelloWindow(CameraViewProcessor* camera, const char* windowName = "basic_window", unsigned int width = 800, unsigned int height = 600, rgb backgroundColor = rgb(0,0,0)) :
-        windowName(windowName),
+        windowName(*windowName),
         camera(camera),
         width(width),
         height(height),
-        backgroundColor(&backgroundColor),
+        backgroundColor(backgroundColor),
         firstMouse(true),
         lastX(400),
         lastY(300)

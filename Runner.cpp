@@ -41,6 +41,7 @@ static int main3d() {
         current_idx++;
     }
     rgb black(0.0f, 0.0f, 0.0f);
+    rgb white(1.0f, 1.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
     float vertices[] = {
            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -86,13 +87,34 @@ static int main3d() {
            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
 
-    TransformableTextureShapeShader texturerRectangleDrawer("src/ShadersSourceCode/constant_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/textures_color_shift_fragment_shader.fs", &black, textureIds, current_idx);
-    TransformableTextureShapeShader lightSourceDrawer("src/ShadersSourceCode/constant_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/textures_color_shift_fragment_shader.fs", &black, textureIds, current_idx);
-    texturerRectangleDrawer.transferTrianglesWithTextures(vertices, sizeof(vertices), 3, 2,5);
+    unsigned int VAO;
+    unsigned int VBO;
+    unsigned int EBO = -1;
 
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    //glGenBuffers(1, &EBO);
+
+
+    unsigned int lightCubeVAO;
+    glGenVertexArrays(1, &lightCubeVAO);
+    glBindVertexArray(lightCubeVAO);
+
+    TransformableTextureShapeShader texturerRectangleDrawer("src/ShadersSourceCode/constant_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/textures_color_shift_fragment_shader.fs", VAO, VBO, EBO, &black, textureIds, current_idx);
+    TransformableTextureShapeShader lightSourceDrawer("src/ShadersSourceCode/light_shaders/light_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", VAO, VBO, EBO, &white, textureIds, current_idx);
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, lightPos);
+    model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+    lightSourceDrawer.setModelTransformation(&model);
+    texturerRectangleDrawer.transferTrianglesWithTextures(vertices, sizeof(vertices), 3, 2,5);
+    lightSourceDrawer.transferTraingles(vertices, sizeof(vertices), 3, 5);
 
     vector<TransformableTextureShapeShader*> triangleDrawers;
     triangleDrawers.push_back(&texturerRectangleDrawer);
+    triangleDrawers.push_back(&lightSourceDrawer);
 
     basicWindowTest.cameraRenderLoop(triangleDrawers);
     glfwTerminate();

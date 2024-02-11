@@ -107,5 +107,5 @@ void HelloWindow::eventsProcessing()
 
 void HelloWindow::imageRendering()
 {
-    setBackgroundColor(backgroundColor->r, backgroundColor->g, backgroundColor->b);
+    setBackgroundColor(backgroundColor.r, backgroundColor.g, backgroundColor.b);
 }
