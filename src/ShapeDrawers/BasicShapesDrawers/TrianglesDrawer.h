@@ -11,7 +11,7 @@ public:
     int getTrianglesNumber() const {
         return trianglesNumber;
     };
-    virtual void transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
+    virtual void transferTriangles(float* vertices, int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
     virtual void drawShape(int shapeIdx);
     virtual void drawAllTriangles() {
         TrianglesDrawer::drawAllShapes();

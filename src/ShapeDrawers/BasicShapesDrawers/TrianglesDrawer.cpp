@@ -2,7 +2,7 @@
 #include "TrianglesDrawer.h"
 
 
-void TrianglesDrawer::transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
+void TrianglesDrawer::transferTriangles(float *vertices, int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
 {
     setTrianglesNumber(vertices_sizeof / (singleVerticleElemsNum * 3 * sizeof(float)));
     glBindVertexArray(VAO);

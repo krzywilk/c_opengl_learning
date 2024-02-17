@@ -6,6 +6,9 @@
 void ShapesDrawer::setupIndices(unsigned int* indices, int indices_sizeof)
 {
     glBindVertexArray(VAO);
+    if (EBO < 0) {
+        glGenBuffers(GL_ELEMENT_ARRAY_BUFFER, &EBO);
+    }
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_sizeof, indices, GL_STATIC_DRAW);
 }
