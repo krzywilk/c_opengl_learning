@@ -36,7 +36,6 @@ private:
 protected: 
     unsigned int VBO, VAO;
     unsigned int shaderProgramId;
-    int vertexColorLocation;
     unsigned int trianglesNumber;
     unsigned int currentAttribElemSize;
 

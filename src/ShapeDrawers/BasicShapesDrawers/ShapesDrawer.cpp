@@ -1,15 +1,9 @@
 #pragma once
-#include "ColoredShapesDrawer.h"
+#include "ShapesDrawer.h"
 
 
-void ColoredShapesDrawer::transferVerticesAndIndices(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof)
-{
-    setupIndices(indices, indices_sizeof);
-    transferTriangles(vertices, vertices_sizeof, single_verticle_size, singleVerticleDataElemsNum );
-    setTrianglesNumber(indices_sizeof / (3 * sizeof(float)));
-}
 
-void ColoredShapesDrawer::setupIndices(unsigned int* indices, int indices_sizeof)
+void ShapesDrawer::setupIndices(unsigned int* indices, int indices_sizeof)
 {
     glBindVertexArray(VAO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -17,7 +11,7 @@ void ColoredShapesDrawer::setupIndices(unsigned int* indices, int indices_sizeof
 }
 
 
-void ColoredShapesDrawer::drawShape(int shapeIdx)
+void ShapesDrawer::drawShape(int shapeIdx)
 {
     glUseProgram(shaderProgramId);
     processCachedUniforms();
@@ -25,7 +19,7 @@ void ColoredShapesDrawer::drawShape(int shapeIdx)
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(3 * shapeIdx * sizeof(unsigned int)));
 }
 
-void ColoredShapesDrawer::drawAllShapes() {
+void ShapesDrawer::drawAllShapes() {
     glUseProgram(shaderProgramId);
     processCachedUniforms();
     glBindVertexArray(VAO); 

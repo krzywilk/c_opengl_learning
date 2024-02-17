@@ -1,8 +1,8 @@
 #pragma once
-#include "ColoredTrianglesDrawer.h"
+#include "TrianglesDrawer.h"
 
 
-void ColoredTrianglesDrawer::transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
+void TrianglesDrawer::transferTriangles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum)
 {
     setTrianglesNumber(vertices_sizeof / (singleVerticleElemsNum * 3 * sizeof(float)));
     glBindVertexArray(VAO);
@@ -14,7 +14,7 @@ void ColoredTrianglesDrawer::transferTriangles(float vertices[], int vertices_si
 }
 
 
-void ColoredTrianglesDrawer::drawShape(int shapeIdx)
+void TrianglesDrawer::drawShape(int shapeIdx)
 {
     glUseProgram(shaderProgramId);
     processCachedUniforms();
@@ -22,7 +22,7 @@ void ColoredTrianglesDrawer::drawShape(int shapeIdx)
     glDrawArrays(GL_TRIANGLES, shapeIdx * 3, 3);
 }
 
-void ColoredTrianglesDrawer::drawAllShapes() {
+void TrianglesDrawer::drawAllShapes() {
     glUseProgram(shaderProgramId);
     processCachedUniforms();
     glBindVertexArray(VAO);

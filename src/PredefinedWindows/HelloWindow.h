@@ -3,7 +3,7 @@ using namespace std;
 #include <vector>
 #include "../utils/simples.cpp"
 #include "../ShapeDrawers/ShaderDrawer.h"
-#include "../../CameraViewProcessing.h"
+#include "../Cameras/CameraViewProcessing.h"
 #include "../ShapeDrawers/Textures/TransformableTextureShapeShader.h"
 
 class HelloWindow

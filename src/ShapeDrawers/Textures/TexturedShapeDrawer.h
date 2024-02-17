@@ -1,18 +1,19 @@
 #pragma once
-#include "../DynamicColor/VertexColoredShapesDrawer.h"
 #include <format>
 #include <iostream>
+#include "../BasicShapesDrawers/ShapesDrawer.h"
 
 
-class ColoredTexturedShapeDrawer : public VertexColoredShapesDrawer
+
+class TexturedShapeDrawer : public ShapesDrawer
 {
 protected:
     unsigned int texutresNumber;
     unsigned int* textureIds; // pointer to array of ids
 public:
 
-    ColoredTexturedShapeDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
-        VertexColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
+    TexturedShapeDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
+        ShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
         textureIds(textureIds),
         texutresNumber(texutresNumber)
     {
@@ -24,11 +25,6 @@ public:
         }
 
     };
-
-	void transferVerticesIndicesTextureColors(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleColorSize, int singleVerticleTextureSize, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof);
-	void transferVerticesIndicesTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum, unsigned int* indices, int indices_sizeof);
-    void transferTrianglesWithTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum);
-
     virtual void drawShape(int shapeIdx)
     {
         for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
@@ -36,7 +32,7 @@ public:
             glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
         }
 
-        VertexColoredShapesDrawer::drawShape(shapeIdx);
+        ShapesDrawer::drawShape(shapeIdx);
     };
     virtual void drawAllShapes()
     {
@@ -44,7 +40,7 @@ public:
             glActiveTexture(GL_TEXTURE0 + textureIdx);
             glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx] );
         }
-        VertexColoredShapesDrawer::drawAllShapes();
+        ShapesDrawer::drawAllShapes();
     };
 
     virtual void drawAllTriangles()
@@ -53,7 +49,7 @@ public:
             glActiveTexture(GL_TEXTURE0 + textureIdx);
             glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
         }
-        VertexColoredShapesDrawer::drawAllTriangles();
+        ShapesDrawer::drawAllTriangles();
     };
 };
 

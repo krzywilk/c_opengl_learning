@@ -1,11 +1,11 @@
 #pragma once
-#include "ColoredTexturedShapeDrawer.h"
+#include "TexturedShapeDrawer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 
-class TransformableTextureShapeShader: public ColoredTexturedShapeDrawer
+class TransformableTextureShapeShader: public TexturedShapeDrawer
 {
 private:
 	glm::mat4 modelTransformation;
@@ -19,7 +19,7 @@ public:
 	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, 
 		unsigned int* textureIds, unsigned int texutresNumber, unsigned int& VAO, unsigned int& VBO, unsigned int&  EBO,  glm::mat4 * modelTransformation,
 		glm::mat4* viewTransformation, glm::mat4* projectionTransformation) :
-		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, textureIds, texutresNumber),
+		TexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, textureIds, texutresNumber),
 		modelTransformation(*modelTransformation),
 		viewTransformation(*viewTransformation),
 		projectionTransformation(*projectionTransformation)
@@ -29,7 +29,7 @@ public:
 		projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
 	};
 	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
-		ColoredTexturedShapeDrawer(vertexShaderPath, fragmentShaderPath,  VAO, VBO, EBO, textureIds, texutresNumber)
+		TexturedShapeDrawer(vertexShaderPath, fragmentShaderPath,  VAO, VBO, EBO, textureIds, texutresNumber)
 	{
 		modelTransformation = glm::mat4(1.0f);
 		viewTransformation = glm::mat4(1.0f);
@@ -45,7 +45,7 @@ public:
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		ColoredTexturedShapeDrawer::drawShape(shapeIdx);
+		TexturedShapeDrawer::drawShape(shapeIdx);
 	};
 	virtual void drawAllShapes()
 	{
@@ -53,7 +53,7 @@ public:
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		ColoredTexturedShapeDrawer::drawAllShapes();
+		TexturedShapeDrawer::drawAllShapes();
 	};
 
 	virtual void drawAllTriangles()
@@ -62,10 +62,9 @@ public:
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		ColoredTexturedShapeDrawer::drawAllTriangles();
+		TexturedShapeDrawer::drawAllTriangles();
 	};
 
-	void transferTrianglesWithTextures(float* vertices, int vertices_sizeof, int single_verticle_size, int singleVerticleTextureSize, int singleVerticleDataElemsNum);
 
 	void transferTraingles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
 
