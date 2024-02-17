@@ -11,8 +11,8 @@ protected:
     unsigned int* textureIds; // pointer to array of ids
 public:
 
-    ColoredTexturedShapeDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO,  rgb* shapeFillColor, unsigned int* textureIds, unsigned int texutresNumber) :
-        VertexColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO, shapeFillColor),
+    ColoredTexturedShapeDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
+        VertexColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
         textureIds(textureIds),
         texutresNumber(texutresNumber)
     {

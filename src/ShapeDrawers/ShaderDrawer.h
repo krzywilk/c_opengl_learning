@@ -2,12 +2,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "../utils/simples.cpp"
-#include "../../files.cpp"
 #include <string>
 #include <string>
 #include <map>
+#include "../utils/simples.cpp"
+#include "../../files.cpp"
+
 #include <glm/fwd.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 
 class ShaderDrawer 
@@ -36,15 +38,81 @@ protected:
     unsigned int shaderProgramId;
     int vertexColorLocation;
     unsigned int trianglesNumber;
-    std::map<std::string, int> mat4ShaderUniformLocations;
-    //std::map<std::string, glm::mat4> mat4ShaderUniformValues;
+    unsigned int currentAttribElemSize;
+
+    std::map<std::string, bool> *drawCachedBoolUniforms;
+    std::map<std::string, int> *drawCachedIntUniforms;
+    std::map<std::string, float> *drawCachedFloatUniforms;
+    std::map<std::string, glm::vec2> *drawCachedVec2Uniforms;
+    std::map<std::string, glm::vec3> *drawCachedVec3Uniforms;
+
+    std::map<std::string, glm::vec4> *drawCachedVec4Uniforms;
+
+    std::map<std::string, glm::mat2> *drawCachedMat2Uniforms;
+    std::map<std::string, glm::mat3> *drawCachedMat3Uniforms;
+    std::map<std::string, glm::mat4>* drawCachedMat4Uniforms;
+
+    void processCachedUniforms() {
+
+        for (auto const& mat2Uniform : *drawCachedMat2Uniforms)
+        {
+            setMat2(mat2Uniform.first, mat2Uniform.second, false);
+        }
+
+        for (auto const& mat4Uniform : *drawCachedMat4Uniforms)
+        {
+            setMat4(mat4Uniform.first, mat4Uniform.second, false);
+        }
+
+        for (auto const& mat3Uniform : *drawCachedMat3Uniforms)
+        {
+            setMat3(mat3Uniform.first, mat3Uniform.second, false);
+        }
+
+        for (auto const& mat3Uniform : *drawCachedMat3Uniforms)
+        {
+            setMat3(mat3Uniform.first, mat3Uniform.second, false);
+        }
+
+        for (auto const& vec2Uniform : *drawCachedVec2Uniforms)
+        {
+            setVec2(vec2Uniform.first, vec2Uniform.second, false);
+        }
+
+        for (auto const& floatUniform : *drawCachedFloatUniforms)
+        {
+            setInt(floatUniform.first, floatUniform.second, false);
+        }
+
+        for (auto const& intUniform : *drawCachedIntUniforms)
+        {
+            setInt(intUniform.first, intUniform.second, false);
+        }
+
+        for (auto const& boolUniform : *drawCachedBoolUniforms)
+        {
+            setBool(boolUniform.first, boolUniform.second, false);
+        }
+
+        for (auto const& vec4Uniform : *drawCachedVec4Uniforms)
+        {
+            setVec4(vec4Uniform.first, vec4Uniform.second, false);
+        }
+
+        for (auto const& vec3Uniform : *drawCachedVec3Uniforms)
+        {
+            setVec3(vec3Uniform.first, vec3Uniform.second, false);
+        }
+    }
 
 public:
     ShaderDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int &VAO, unsigned int &VBO) :
         trianglesNumber(0),
+        currentAttribElemSize(0),
         VBO(VBO),
         VAO(VAO)
     {
+        
         std::string stringVertexShaderSource = loadShaderSourceCode(vertexShaderPath);
         vertexShaderSource = stringVertexShaderSource.c_str();
 
@@ -69,21 +137,19 @@ public:
         glDeleteShader(vertexShaderId);
         glDeleteShader(fragmentShaderId);
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-        std::map<std::string, int> mat4ShaderLocations;
-        vertexColorLocation = glGetUniformLocation(shaderProgramId, "color");
-
+       
+        drawCachedBoolUniforms = new std::map<std::string, bool>();
+        drawCachedIntUniforms = new std::map<std::string, int>();
+        drawCachedFloatUniforms = new std::map<std::string, float>();
+        drawCachedVec2Uniforms = new std::map<std::string, glm::vec2>();
+        drawCachedVec3Uniforms = new std::map<std::string, glm::vec3>();
+        drawCachedVec4Uniforms = new std::map<std::string, glm::vec4>();
+        drawCachedMat2Uniforms = new std::map<std::string, glm::mat2> ();
+        drawCachedMat3Uniforms = new std::map<std::string, glm::mat3>();
+        drawCachedMat4Uniforms = new std::map<std::string, glm::mat4>();
+        
 
     };
-
-    void setMat4ShaderUniform(const char* shaderUniformeName) {
-        mat4ShaderUniformLocations.insert({ shaderUniformeName, glGetUniformLocation(shaderProgramId, shaderUniformeName) });
-    };
-
-    void setMat4ShaderUniformValue(const char* shaderUniformeName, glm::mat4* value) {
-       // mat4ShaderUniformValues.insert({shaderUniformeName, value});
-    };
-
-
 
     unsigned int getVBO() {
         return VBO;
@@ -106,7 +172,110 @@ public:
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);
         glDeleteProgram(shaderProgramId);
+
+
+        delete drawCachedBoolUniforms;
+        delete drawCachedIntUniforms;
+        delete drawCachedFloatUniforms;
+        delete drawCachedVec2Uniforms;
+        delete drawCachedVec3Uniforms;
+        delete drawCachedVec4Uniforms;
+        delete drawCachedMat2Uniforms;
+        delete drawCachedMat3Uniforms;
+        delete drawCachedMat4Uniforms;
     }
 
+    void setVertexAttribPointer(int attribId, int elemSize, int attribOffset) {
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glVertexAttribPointer(attribId, elemSize, GL_FLOAT, GL_FALSE, currentAttribElemSize * sizeof(float), (void*)(attribOffset * sizeof(float)));
+        glEnableVertexAttribArray(attribId);
+    }
+
+    //uniform setters
+
+    void setBool(const std::string& name, bool value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedBoolUniforms->insert({ name, value });
+        }
+        glUniform1i(glGetUniformLocation(shaderProgramId, name.c_str()), (int)value);
+    }
+    // ------------------------------------------------------------------------
+    void setInt(const std::string& name, int value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedIntUniforms->insert({ name, value });
+        }
+        glUniform1i(glGetUniformLocation(shaderProgramId, name.c_str()), value);
+    }
+    // ------------------------------------------------------------------------
+    void setFloat(const std::string& name, float value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedFloatUniforms->insert({ name, value });
+        }
+        glUniform1f(glGetUniformLocation(shaderProgramId, name.c_str()), value);
+    }
+    // ------------------------------------------------------------------------
+    void setVec2(const std::string& name, const glm::vec2& value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedVec2Uniforms->insert({ name, value });
+        }
+        glUniform2fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, &value[0]);
+    }
+    void setVec2(const std::string& name, float x, float y) const
+    {
+        glUniform2f(glGetUniformLocation(shaderProgramId, name.c_str()), x, y);
+    }
+    // ------------------------------------------------------------------------
+    void setVec3(const std::string& name, const glm::vec3& value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedVec3Uniforms->insert({ name, value });
+        }
+        glUniform3fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, &value[0]);
+    }
+    void setVec3(const std::string& name, float x, float y, float z) const
+    {
+        glUniform3f(glGetUniformLocation(shaderProgramId, name.c_str()), x, y, z);
+    }
+    // ------------------------------------------------------------------------
+    void setVec4(const std::string& name, const glm::vec4& value, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedVec4Uniforms->insert({ name, value });
+        }
+        glUniform4fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, &value[0]);
+    }
+    void setVec4(const std::string& name, float x, float y, float z, float w) const
+    {
+        glUniform4f(glGetUniformLocation(shaderProgramId, name.c_str()), x, y, z, w);
+    }
+    // ------------------------------------------------------------------------
+    void setMat2(const std::string& name, const glm::mat2& mat, bool drawCache = false) const
+    {
+        if (drawCache) {
+            this->drawCachedMat2Uniforms->insert({ name, mat });
+        }
+        glUniformMatrix2fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
+    // ------------------------------------------------------------------------
+    void setMat3(const std::string& name, const glm::mat3& mat, bool drawCache = true) const
+    {
+        if (drawCache) {
+            this->drawCachedMat3Uniforms->insert({ name, mat });
+        }
+        glUniformMatrix3fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
+    // ------------------------------------------------------------------------
+    void setMat4(const std::string& name, const glm::mat4& mat, bool drawCache = true) const
+    {
+        if (drawCache) {
+            this->drawCachedMat3Uniforms->insert({ name, mat });
+        }
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
 
 };

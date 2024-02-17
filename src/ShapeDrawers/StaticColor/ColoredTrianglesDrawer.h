@@ -3,13 +3,10 @@
 class ColoredTrianglesDrawer :
     public ShaderDrawer
 {
-protected:
-    rgb shapeFillColor;
 
 public:
-    ColoredTrianglesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, rgb* shapeFillColor):
-        ShaderDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO),
-        shapeFillColor(*shapeFillColor)
+    ColoredTrianglesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO):
+        ShaderDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO)
     {};
     int getTrianglesNumber() const {
         return trianglesNumber;

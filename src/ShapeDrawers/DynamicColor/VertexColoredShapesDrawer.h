@@ -8,8 +8,8 @@ private:
     unsigned int EBO;
 
 public:
-    VertexColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO,unsigned int & EBO,  rgb* shapeFillColor) :
-        ColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, shapeFillColor),
+    VertexColoredShapesDrawer(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO,unsigned int & EBO) :
+        ColoredShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO),
         EBO(EBO)
     {
         
