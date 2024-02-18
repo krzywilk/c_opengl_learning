@@ -5,7 +5,7 @@
 
 
 
-class TexturedShapeDrawer : public ShapesDrawer
+class TexturedShapeDrawer : public ShapesDrawer // TODO: remove, now moved to TransformableTextureShapeShader
 {
 protected:
     unsigned int texutresNumber;

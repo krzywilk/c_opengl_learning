@@ -191,6 +191,14 @@ public:
         glEnableVertexAttribArray(attribId);
     }
 
+    void setCurrentAttribElemSize(unsigned int currentAttribElemSize) {
+        this->currentAttribElemSize = currentAttribElemSize;
+    }
+
+    int getCurrentAttribElemSize() {
+        return this->currentAttribElemSize;
+    }
+
     //uniform setters
 
     void setBool(const std::string& name, bool value, bool drawCache = false) const

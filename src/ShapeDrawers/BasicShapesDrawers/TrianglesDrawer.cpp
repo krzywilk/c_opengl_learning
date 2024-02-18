@@ -9,8 +9,7 @@ void TrianglesDrawer::transferTriangles(float *vertices, int vertices_sizeof, in
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices_sizeof, vertices, GL_STATIC_DRAW);
     currentAttribElemSize = singleVerticleDataElemsNum;
-    glVertexAttribPointer(0, singleVerticleElemsNum, GL_FLOAT, GL_FALSE, singleVerticleDataElemsNum * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+
 }
 
 

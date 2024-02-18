@@ -90,6 +90,9 @@
     <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TrianglesDrawer.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\BasicShapesDrawers</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.cpp">
+      <Filter>Pliki źródłowe\ShapeDrawers\BasicShapesDrawers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -100,9 +103,6 @@
     </ClInclude>
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ShapeDrawers\Textures\TexturedShapeDrawer.h">
-      <Filter>Pliki nagłówkowe\ShapeDrawers\Textures</Filter>
     </ClInclude>
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h">
       <Filter>Pliki nagłówkowe\Textures\Loaders</Filter>
@@ -117,6 +117,9 @@
       <Filter>Pliki nagłówkowe\ShapeDrawers\BasicShapesDrawers</Filter>
     </ClInclude>
     <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\TrianglesDrawer.h">
+      <Filter>Pliki nagłówkowe\ShapeDrawers\BasicShapesDrawers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\BasicShapesDrawers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,78 +3,72 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "../BasicShapesDrawers/TransformableShapeShader.h"
 
 
-class TransformableTextureShapeShader: public TexturedShapeDrawer
+class TransformableTextureShapeShader: public TransformableShapeShader //TODO: not tested
 {
 private:
-	glm::mat4 modelTransformation;
-	glm::mat4 viewTransformation;
-	glm::mat4 projectionTransformation;
-	unsigned int modelLoc;
-	unsigned int viewLoc;
-	unsigned int projectionLoc;
+	unsigned int texutresNumber;
+	unsigned int* textureIds; // pointer to array of ids
 
 public:
 	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, 
 		unsigned int* textureIds, unsigned int texutresNumber, unsigned int& VAO, unsigned int& VBO, unsigned int&  EBO,  glm::mat4 * modelTransformation,
 		glm::mat4* viewTransformation, glm::mat4* projectionTransformation) :
-		TexturedShapeDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, textureIds, texutresNumber),
-		modelTransformation(*modelTransformation),
-		viewTransformation(*viewTransformation),
-		projectionTransformation(*projectionTransformation)
+		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, modelTransformation, viewTransformation, projectionTransformation),
+		textureIds(textureIds),
+		texutresNumber(texutresNumber)
 	{
-		modelLoc = glGetUniformLocation(shaderProgramId, "model");
-		viewLoc = glGetUniformLocation(shaderProgramId, "view");
-		projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
-	};
-	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
-		TexturedShapeDrawer(vertexShaderPath, fragmentShaderPath,  VAO, VBO, EBO, textureIds, texutresNumber)
-	{
-		modelTransformation = glm::mat4(1.0f);
-		viewTransformation = glm::mat4(1.0f);
-		projectionTransformation = glm::mat4(1.0f);
 
-		modelLoc = glGetUniformLocation(shaderProgramId, "model");
-		viewLoc = glGetUniformLocation(shaderProgramId, "view");
-		projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
+		for (int i = 0; i < texutresNumber; i++) {
+			std::string sVariableName = ("texture" + std::to_string(i));
+			const char* pcVariable_name = sVariableName.c_str();
+			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), i);
+		}
+	};
+
+	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
+		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
+		textureIds(textureIds),
+		texutresNumber(texutresNumber)
+	{
+
+		for (int i = 0; i < texutresNumber; i++) {
+			std::string sVariableName = ("texture" + std::to_string(i));
+			const char* pcVariable_name = sVariableName.c_str();
+			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), i);
+		}
 	};
 	virtual void drawShape(int shapeIdx)
 	{
 		glUseProgram(shaderProgramId);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		TexturedShapeDrawer::drawShape(shapeIdx);
+		for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
+			glActiveTexture(GL_TEXTURE0 + textureIdx);
+			glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
+		}
+
+		TransformableShapeShader::drawShape(shapeIdx);
 	};
 	virtual void drawAllShapes()
 	{
 		glUseProgram(shaderProgramId);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		TexturedShapeDrawer::drawAllShapes();
+		for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
+			glActiveTexture(GL_TEXTURE0 + textureIdx);
+			glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
+		}
+		TransformableShapeShader::drawAllShapes();
 	};
 
 	virtual void drawAllTriangles()
 	{
 		glUseProgram(shaderProgramId);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelTransformation));
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projectionTransformation));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransformation));
-		TexturedShapeDrawer::drawAllTriangles();
+		for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
+			glActiveTexture(GL_TEXTURE0 + textureIdx);
+			glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
+		}
+		TransformableShapeShader::drawAllTriangles();
 	};
-
-
 	void transferTraingles(float vertices[], int vertices_sizeof, int singleVerticleElemsNum, int singleVerticleDataElemsNum);
 
-	void setModelTransformation(glm::mat4* newModelTransformation) {
-		modelTransformation = *newModelTransformation;
-	};
-	void setViewTransformation(glm::mat4* newViewTransformation) {
-		viewTransformation = *newViewTransformation;
-	};
-	void setProjectionTransformation(glm::mat4* newProjectionTransformation) {
-		projectionTransformation = *newProjectionTransformation;
-	};
 };

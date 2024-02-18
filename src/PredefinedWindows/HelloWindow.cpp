@@ -31,7 +31,7 @@ void HelloWindow::drawOnlyRenderLoop(const vector<ShaderDrawer*>&trainglesToDraw
     }
 }
 
-void HelloWindow::cameraRenderLoop(const vector<TransformableTextureShapeShader*>& trainglesToDraw)
+void HelloWindow::cameraRenderLoop(const vector<TransformableShapeShader*>& trainglesToDraw)
 {
     while (!glfwWindowShouldClose(window))
     {
@@ -42,7 +42,7 @@ void HelloWindow::cameraRenderLoop(const vector<TransformableTextureShapeShader*
         imageRendering();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
 
-        vector<TransformableTextureShapeShader*>::const_iterator  iterator_trainglesToDraw;
+        vector<TransformableShapeShader*>::const_iterator  iterator_trainglesToDraw;
         for (iterator_trainglesToDraw = trainglesToDraw.begin(); iterator_trainglesToDraw != trainglesToDraw.end(); iterator_trainglesToDraw++)
         {
             glm::mat4 projection = glm::perspective(glm::radians(camera->zoom), (float)width / (float)height, 0.1f, 100.0f);

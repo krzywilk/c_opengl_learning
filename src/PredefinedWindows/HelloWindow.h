@@ -5,6 +5,7 @@ using namespace std;
 #include "../ShapeDrawers/ShaderDrawer.h"
 #include "../Cameras/CameraViewProcessing.h"
 #include "../ShapeDrawers/Textures/TransformableTextureShapeShader.h"
+#include "../ShapeDrawers/BasicShapesDrawers/TransformableShapeShader.h"
 
 class HelloWindow
 {
@@ -63,7 +64,7 @@ public:
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     };
     void drawOnlyRenderLoop(const vector<ShaderDrawer*>& trainglesToDraw);
-    void cameraRenderLoop(const vector<TransformableTextureShapeShader*>& trainglesToDraw);
+    void cameraRenderLoop(const vector<TransformableShapeShader*>& trainglesToDraw);
     void setBackgroundColor(const float r, const float g, const float b);
     void static scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     void static mouse_callback(GLFWwindow* window, double xposIn, double yposIn);

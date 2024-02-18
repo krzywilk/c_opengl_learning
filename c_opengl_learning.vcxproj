@@ -140,6 +140,7 @@
     <ClCompile Include="src\Cameras\CameraViewProcessing.cpp" />
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp" />
     <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\ShapesDrawer.cpp" />
+    <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.cpp" />
     <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TrianglesDrawer.cpp" />
     <ClCompile Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.cpp" />
     <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp" />
@@ -149,9 +150,9 @@
     <ClInclude Include="src\Cameras\CameraViewProcessing.h" />
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h" />
     <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\ShapesDrawer.h" />
+    <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.h" />
     <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\TrianglesDrawer.h" />
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h" />
-    <ClInclude Include="src\ShapeDrawers\Textures\TexturedShapeDrawer.h" />
     <ClInclude Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.h" />
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h" />
     <ClInclude Include="stb_image.h" />
