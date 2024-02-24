@@ -95,19 +95,57 @@ static int main3d() {
     glGenVertexArrays(1, &lightCubeVAO);
 
 
-    TransformableShapeShader lightSourceDrawer("src/ShadersSourceCode/constant_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", VAO, VBO, EBO);
+    TransformableShapeShader lightSourceDrawer("src/ShadersSourceCode/constant_color_shaders/transformation_vertex_shader.vs", "src/ShadersSourceCode/constant_color_shaders/fragment_shader.fs", lightCubeVAO, VBO, EBO, camera.getPosition());
     glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
+    glm::vec3 secBox(1.2f, 3.0f, 2.0f);
+
     glm::vec4 lightColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glm::vec3 diffuseColor = glm::vec3(lightColor) * glm::vec3(0.2f); // decrease the influence
+    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
     lightSourceDrawer.setVec4("color", lightColor, true);
 
+    /*    
+    TransformableShapeShader texturerRectangleDrawer("src/ShadersSourceCode/light_shaders/light_vertex_shader.vs", "src/ShadersSourceCode/light_shaders/light_fragment_shader.fs", VAO, VBO, EBO, camera.getPosition());
+    TransformableShapeShader texturerRectangleDrawer_small("src/ShadersSourceCode/light_shaders/light_vertex_shader.vs", "src/ShadersSourceCode/light_shaders/light_fragment_shader.fs", VAO, VBO, EBO, camera.getPosition());
+    
+    texturerRectangleDrawer.setVec3("objectColor", glm::vec3(0.2f), true);
+    texturerRectangleDrawer.setVec3_pointerValue("viewPos", camera.getPosition(), true);
+    texturerRectangleDrawer.setVec3_pointerValue("light.position", camera.getPosition(), true);
 
-    TransformableShapeShader texturerRectangleDrawer("src/ShadersSourceCode/light_shaders/light_vertex_shader.vs", "src/ShadersSourceCode/light_shaders/light_fragment_shader.fs", lightCubeVAO, VBO, EBO);
-    texturerRectangleDrawer.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f), true);
-    texturerRectangleDrawer.setVec3("lightColor", lightColor, true);
-    texturerRectangleDrawer.setVec3("lightPos", lightPos, true);
+
+    texturerRectangleDrawer.setVec3("light.ambient", ambientColor, true);
+    texturerRectangleDrawer.setVec3("light.diffuse", diffuseColor, true);
+    texturerRectangleDrawer.setVec3("light.specular", glm::vec3(1.0), true);
+
+    texturerRectangleDrawer.setVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f), true);
+    texturerRectangleDrawer.setVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f), true);
+    texturerRectangleDrawer.setVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f), true); // specular lighting doesn't have full effect on this object's material
+    texturerRectangleDrawer.setFloat("material.shininess", 32.0f, true);
+
+    texturerRectangleDrawer_small.setVec3("objectColor", glm::vec3(0.2f), true);
+    texturerRectangleDrawer_small.setVec3_pointerValue("viewPos", camera.getPosition(), true);
+    texturerRectangleDrawer_small.setVec3("light.ambient", ambientColor, true);
+    texturerRectangleDrawer_small.setVec3("light.diffuse", diffuseColor, true);
+    texturerRectangleDrawer_small.setVec3("light.specular", glm::vec3(1.0), true);
+
+    texturerRectangleDrawer_small.setVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f), true);
+    texturerRectangleDrawer_small.setVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f), true);
+    texturerRectangleDrawer_small.setVec3("material.specular", glm::vec3(0.2f, 0.5f, 0.5f), true); // specular lighting doesn't have full effect on this object's material
+    texturerRectangleDrawer_small.setFloat("material.shininess", 256.0f, true);
+    texturerRectangleDrawer_small.setVec3("light.position", lightPos, true);
+    */
+
+
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, secBox);
+    model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+    texturerRectangleDrawer_small.setModelTransformation(&model);
+
 
     
-    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::mat4(1.0f);
     model = glm::mat4(1.0f);
     model = glm::translate(model, lightPos);
     model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
@@ -116,6 +154,11 @@ static int main3d() {
     texturerRectangleDrawer.setVertexAttribPointer(0, 3, 0);
     texturerRectangleDrawer.setVertexAttribPointer(1, 3, 3);
     //texturerRectangleDrawer.setVertexAttribPointer(2, 2, 6);
+
+    texturerRectangleDrawer_small.setCurrentAttribElemSize(texturerRectangleDrawer.getCurrentAttribElemSize());
+    texturerRectangleDrawer_small.setTrianglesNumber(texturerRectangleDrawer.getTrianglesNumber());
+    texturerRectangleDrawer_small.setVertexAttribPointer(0, 3, 0);
+    texturerRectangleDrawer_small.setVertexAttribPointer(1, 3, 3);
 
     lightSourceDrawer.setCurrentAttribElemSize(texturerRectangleDrawer.getCurrentAttribElemSize());
     lightSourceDrawer.setTrianglesNumber(texturerRectangleDrawer.getTrianglesNumber());
@@ -127,6 +170,7 @@ static int main3d() {
     vector<TransformableShapeShader*> triangleDrawers;
     triangleDrawers.push_back(&texturerRectangleDrawer);
     triangleDrawers.push_back(&lightSourceDrawer);
+    triangleDrawers.push_back(&texturerRectangleDrawer_small);
 
     basicWindowTest.cameraRenderLoop(triangleDrawers);
     glfwTerminate();

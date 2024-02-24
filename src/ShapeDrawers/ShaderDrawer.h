@@ -44,6 +44,7 @@ protected:
     std::map<std::string, float> *drawCachedFloatUniforms;
     std::map<std::string, glm::vec2> *drawCachedVec2Uniforms;
     std::map<std::string, glm::vec3> *drawCachedVec3Uniforms;
+    std::map<std::string, glm::vec3*> *drawCachedVec3Uniforms_pointerValue;
 
     std::map<std::string, glm::vec4> *drawCachedVec4Uniforms;
 
@@ -102,6 +103,11 @@ protected:
         {
             setVec3(vec3Uniform.first, vec3Uniform.second, false);
         }
+
+        for (auto const& vec3Uniform : *drawCachedVec3Uniforms_pointerValue)
+        {
+            setVec3_pointerValue(vec3Uniform.first, vec3Uniform.second, false);
+        }
     }
 
 public:
@@ -142,6 +148,7 @@ public:
         drawCachedFloatUniforms = new std::map<std::string, float>();
         drawCachedVec2Uniforms = new std::map<std::string, glm::vec2>();
         drawCachedVec3Uniforms = new std::map<std::string, glm::vec3>();
+        drawCachedVec3Uniforms_pointerValue = new std::map<std::string, glm::vec3*>();
         drawCachedVec4Uniforms = new std::map<std::string, glm::vec4>();
         drawCachedMat2Uniforms = new std::map<std::string, glm::mat2> ();
         drawCachedMat3Uniforms = new std::map<std::string, glm::mat3>();
@@ -244,6 +251,17 @@ public:
         }
         glUniform3fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, &value[0]);
     }
+
+    void setVec3_pointerValue(const std::string& name, glm::vec3* value, bool drawCache = false) const
+    //risky, pointer to value may be deleted and ShaderDrawer class cannnot reconize that
+    {
+        if (drawCache) {
+            this->drawCachedVec3Uniforms_pointerValue->insert({ name, value });
+        }
+        glUniform3fv(glGetUniformLocation(shaderProgramId, name.c_str()), 1, glm::value_ptr(*value));
+    }
+
+
     void setVec3(const std::string& name, float x, float y, float z) const
     {
         glUniform3f(glGetUniformLocation(shaderProgramId, name.c_str()), x, y, z);

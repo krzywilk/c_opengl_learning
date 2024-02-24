@@ -31,7 +31,9 @@ public:
     float movementSpeed;
     float mouseSensitivity;
     float zoom;
-
+    glm::vec3* getPosition() {
+        return &position;
+    }
     // constructor with vectors
     CameraViewProcessor(glm::vec3 position_,
         glm::vec3 up_, 

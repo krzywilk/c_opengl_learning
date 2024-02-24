@@ -50,6 +50,10 @@ public:
 		return name2id[*name];
 	}
 
+	std::map<std::string, unsigned int> getName2id() {
+		return name2id;
+	}
+
 	void loadTextures();
 
 	~TexturesDirLoader()

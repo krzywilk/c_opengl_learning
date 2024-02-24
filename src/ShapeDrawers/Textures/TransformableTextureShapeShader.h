@@ -10,41 +10,50 @@ class TransformableTextureShapeShader: public TransformableShapeShader //TODO: n
 {
 private:
 	unsigned int texutresNumber;
-	unsigned int* textureIds; // pointer to array of ids
+	std::vector<int> textureIds;
 
 public:
-	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, 
-		unsigned int* textureIds, unsigned int texutresNumber, unsigned int& VAO, unsigned int& VBO, unsigned int&  EBO,  glm::mat4 * modelTransformation,
-		glm::mat4* viewTransformation, glm::mat4* projectionTransformation) :
-		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, modelTransformation, viewTransformation, projectionTransformation),
-		textureIds(textureIds),
-		texutresNumber(texutresNumber)
+	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath,  unsigned int& VAO, unsigned int& VBO, unsigned int&  EBO,  glm::mat4 * modelTransformation,
+		glm::mat4* viewTransformation, glm::mat4* projectionTransformation, std::map<std::string, int> *textureName2id) :
+		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO,EBO, modelTransformation, viewTransformation, projectionTransformation, NULL),
+		textureIds()
 	{
-
-		for (int i = 0; i < texutresNumber; i++) {
-			std::string sVariableName = ("texture" + std::to_string(i));
+		texutresNumber = 0;
+		std::map<std::string, int>::iterator iterator = textureName2id->begin();
+		while (iterator != textureName2id->end())
+		{
+			texutresNumber += 1;
+			std::string sVariableName = iterator->first;
 			const char* pcVariable_name = sVariableName.c_str();
-			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), i);
+			int textureId = iterator->second;
+			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), textureId);
+			textureIds.push_back(textureId);
 		}
+		
 	};
 
-	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, unsigned int* textureIds, unsigned int texutresNumber) :
-		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
-		textureIds(textureIds),
-		texutresNumber(texutresNumber)
+	TransformableTextureShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO,  std::map<std::string, int>* textureName2id) :
+		TransformableShapeShader(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO, NULL),
+		textureIds()
 	{
-
-		for (int i = 0; i < texutresNumber; i++) {
-			std::string sVariableName = ("texture" + std::to_string(i));
+		texutresNumber = 0;
+		std::map<std::string, int>::iterator iterator = textureName2id->begin();
+		while (iterator != textureName2id->end())
+		{
+			texutresNumber += 1;
+			std::string sVariableName = iterator->first;
 			const char* pcVariable_name = sVariableName.c_str();
-			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), i);
-		}
-	};
+			int textureId = iterator->second;
+			glUniform1i(glGetUniformLocation(shaderProgramId, pcVariable_name), textureId);
+			textureIds.push_back(textureId);
+		};
+	}
+
 	virtual void drawShape(int shapeIdx)
 	{
 		glUseProgram(shaderProgramId);
 		for (int textureIdx = 0; textureIdx < texutresNumber; textureIdx++) {
-			glActiveTexture(GL_TEXTURE0 + textureIdx);
+			glActiveTexture(GL_TEXTURE0 + textureIds[textureIdx]);
 			glBindTexture(GL_TEXTURE_2D, textureIds[textureIdx]);
 		}
 
