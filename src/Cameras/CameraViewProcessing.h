@@ -31,6 +31,9 @@ public:
     float movementSpeed;
     float mouseSensitivity;
     float zoom;
+    glm::vec3* getFront() {
+        return &front;
+    }
     glm::vec3* getPosition() {
         return &position;
     }

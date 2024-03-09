@@ -14,26 +14,22 @@ private:
 	unsigned int modelLoc;
 	unsigned int viewLoc;
 	unsigned int projectionLoc;
-	glm::vec3* cameraPos; //class do not ownn the pointer, needed for lighting effects. WARINGNG: risky - may be deleted somewhere outside of class
 
 public:
 	TransformableShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, glm::mat4* modelTransformation,
-		glm::mat4* viewTransformation, glm::mat4* projectionTransformation, glm::vec3* cameraPos) :
+		glm::mat4* viewTransformation, glm::mat4* projectionTransformation) :
 		ShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
 		modelTransformation(*modelTransformation),
 		viewTransformation(*viewTransformation),
-		projectionTransformation(*projectionTransformation),
-		cameraPos(cameraPos)
+		projectionTransformation(*projectionTransformation)
 	{
-
 		modelLoc = glGetUniformLocation(shaderProgramId, "model");
 		viewLoc = glGetUniformLocation(shaderProgramId, "view");
 		projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
 	};
 
-	TransformableShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, glm::vec3* cameraPos) :
-		ShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO),
-		cameraPos(cameraPos)
+	TransformableShapeShader(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO) :
+		ShapesDrawer(vertexShaderPath, fragmentShaderPath, VAO, VBO, EBO)
 	{
 		modelTransformation = glm::mat4(1.0f);
 		viewTransformation = glm::mat4(1.0f);

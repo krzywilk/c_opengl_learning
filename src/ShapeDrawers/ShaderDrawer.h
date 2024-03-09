@@ -69,10 +69,6 @@ protected:
             setMat3(mat3Uniform.first, mat3Uniform.second, false);
         }
 
-        for (auto const& mat3Uniform : *drawCachedMat3Uniforms)
-        {
-            setMat3(mat3Uniform.first, mat3Uniform.second, false);
-        }
 
         for (auto const& vec2Uniform : *drawCachedVec2Uniforms)
         {
@@ -81,7 +77,7 @@ protected:
 
         for (auto const& floatUniform : *drawCachedFloatUniforms)
         {
-            setInt(floatUniform.first, floatUniform.second, false);
+            setFloat(floatUniform.first, floatUniform.second, false);
         }
 
         for (auto const& intUniform : *drawCachedIntUniforms)
