@@ -12,6 +12,8 @@ Currently implemented chapters:
 # Build process
 The building process is being implemented. The implementation is to be based on a [repository with an example](https://github.com/tgalaj/OpenGLSampleCmake).
 
+The manual process of setting up the IDE is described in the [above-mentioned tutorial](https://learnopengl.com/Getting-started/Creating-a-window)
+
 <details>
  <summary>Build scritp</summary>
 
