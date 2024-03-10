@@ -1,8 +1,4 @@
 # Introduction
-<p align="center">
-  <img src="static_files/readme_resources/introduction_boxes.gif" alt="introduction_boxes" />
-</p>
-
 Learning OpenGL by implementing an SDK for basic shape generation and lighting manipulation.
 
 Code is based on [learn OpenGl tutorial](https://learnopengl.com/). 
@@ -26,3 +22,6 @@ The building process is being implemented. The implementation is to be based on 
 
 # Run
 The [runner file](https://github.com/krzywilk/open-gl-shapes-viewer/blob/master/Runner.cpp) contains an example of the use of the implemented functionalities.
+<p align="center">
+  <img src="static_files/readme_resources/introduction_boxes.gif" alt="introduction_boxes" />
+</p>
