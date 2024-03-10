@@ -60,9 +60,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="Runner.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
       <Filter>Pliki źródłowe\PredefinedWindows</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\simples.cpp">
-      <Filter>Pliki źródłowe\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="files.cpp">
       <Filter>Pliki źródłowe\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp">
@@ -93,11 +87,17 @@
     <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.cpp">
       <Filter>Pliki źródłowe\ShapeDrawers\BasicShapesDrawers</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\files.cpp">
+      <Filter>Pliki źródłowe\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\glad.c">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\stb_image.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h">
-      <Filter>Pliki źródłowe</Filter>
-    </ClInclude>
     <ClInclude Include="src\PredefinedWindows\HelloWindow.h">
       <Filter>Pliki nagłówkowe\PredefinedWindows</Filter>
     </ClInclude>
@@ -122,5 +122,8 @@
     <ClInclude Include="src\ShapeDrawers\BasicShapesDrawers\TransformableShapeShader.h">
       <Filter>Pliki nagłówkowe\ShapeDrawers\BasicShapesDrawers</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

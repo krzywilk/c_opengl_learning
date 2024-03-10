@@ -1,7 +1,8 @@
-#define GLFW_INCLUDE_NONE
+//#define GLFW_INCLUDE_NONE
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include <glad/glad.h>
+
 #include "HelloWindow.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

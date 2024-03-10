@@ -7,6 +7,7 @@ using namespace std;
 #include "../ShapeDrawers/Textures/TransformableTextureShapeShader.h"
 #include "../ShapeDrawers/BasicShapesDrawers/TransformableShapeShader.h"
 
+
 class HelloWindow
 {
 private:

@@ -1,7 +1,9 @@
-#define STB_IMAGE_IMPLEMENTATION
+//#define STB_IMAGE_IMPLEMENTATION
 
 #include "TexturesDirLoader.h"
-#include "../../stb_image.h"
+
+#include "stb_image.h"
+
 void TexturesDirLoader::loadTextures()
 {
 	const auto& directoryIterator = fs::directory_iterator(sourcePath);

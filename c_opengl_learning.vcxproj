@@ -71,9 +71,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\projects\cpp\opengl\includes;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>D:\projects\cpp\opengl\includes;$(IncludePath)</ExternalIncludePath>
-    <LibraryPath>D:\projects\cpp\opengl\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <ExternalIncludePath>D:\projects\cpp\opengl\c_opengl_learning\include;D:\projects\cpp\opengl\includes;$(IncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\projects\cpp\opengl\c_opengl_learning\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>D:\projects\cpp\opengl\c_opengl_learning\lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>D:\projects\cpp\opengl\c_opengl_learning\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,11 +114,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>D:\projects\cpp\opengl\c_opengl_learning\include\glad;D:\projects\cpp\opengl\c_opengl_learning\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\projects\cpp\opengl\c_opengl_learning\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -125,17 +131,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\projects\cpp\opengl\c_opengl_learning\include\glad;D:\projects\cpp\opengl\c_opengl_learning\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\projects\cpp\opengl\c_opengl_learning\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="files.cpp" />
-    <ClCompile Include="glad.c" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="src\Cameras\CameraViewProcessing.cpp" />
     <ClCompile Include="src\PredefinedWindows\HelloWindow.cpp" />
@@ -144,7 +151,10 @@
     <ClCompile Include="src\ShapeDrawers\BasicShapesDrawers\TrianglesDrawer.cpp" />
     <ClCompile Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.cpp" />
     <ClCompile Include="src\Textures\Loaders\TexturesDirLoader.cpp" />
+    <ClCompile Include="src\utils\files.cpp" />
     <ClCompile Include="src\utils\simples.cpp" />
+    <ClCompile Include="thirdparty\glad.c" />
+    <ClCompile Include="thirdparty\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cameras\CameraViewProcessing.h" />
@@ -155,7 +165,9 @@
     <ClInclude Include="src\ShapeDrawers\ShaderDrawer.h" />
     <ClInclude Include="src\ShapeDrawers\Textures\TransformableTextureShapeShader.h" />
     <ClInclude Include="src\Textures\Loaders\TexturesDirLoader.h" />
-    <ClInclude Include="stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
